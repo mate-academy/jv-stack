@@ -4,28 +4,28 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MateStack<T> {
-    private List<T> stackList;
+    private List<T> listStack;
 
     public MateStack() {
-        stackList = new ArrayList<>();
+        listStack = new ArrayList<>();
     }
 
     public void push(T value) {
-        stackList.add(value);
+        listStack.add(value);
     }
 
     public T peek() {
-        isEmpty(stackList.size());
-        return stackList.get(stackList.size() - 1);
+        isEmpty(listStack.size());
+        return listStack.get(listStack.size() - 1);
     }
 
     public T pop() {
-        isEmpty(stackList.size());
-        return stackList.remove(stackList.size() - 1);
+        isEmpty(listStack.size());
+        return listStack.remove(listStack.size() - 1);
     }
 
     public int size() {
-        return stackList.size();
+        return listStack.size();
     }
 
     public void isEmpty(int size) {
