@@ -33,6 +33,4 @@ public class MateStack<T> {
             throw new IndexOutOfBoundsException("Stack is empty");
         }
     }
-
 }
-
