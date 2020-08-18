@@ -1,62 +1,36 @@
 package core.stack;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MateStack<T> {
-    private Node<T> topNode;
-    private Node<T> bottomNode;
-    private int size;
+    private List<T> list;
 
     public MateStack() {
-        size = 0;
+        this.list = new ArrayList<>();
     }
 
     public void push(T value) {
-        if (size == 0) {
-            topNode = new Node<T>(null, value);
-            bottomNode = new Node<T>(null, value);
-        } else {
-            Node<T> currentNode = topNode;
-            while (currentNode.next != null) {
-                currentNode = currentNode.next;
-            }
-            bottomNode = new Node<>(null, value);
-            currentNode.next = bottomNode;
-        }
-        size++;
+        list.add(value);
     }
 
     public T peek() {
-        isEmptyStack();
-        return bottomNode.getElement();
+        isStackEmpty();
+        return list.get(list.size() - 1);
     }
 
     public T pop() {
-        isEmptyStack();
-        T popped = bottomNode.getElement();
-        topNode = topNode.next;
-        size--;
-        return popped;
+        isStackEmpty();
+        return list.remove(list.size() - 1);
     }
 
     public int size() {
-        return size;
+        return list.size();
     }
 
-    private void isEmptyStack() {
-        if (size == 0) {
+    private void isStackEmpty() {
+        if (list.isEmpty()) {
             throw new IndexOutOfBoundsException("Stack is empty");
-        }
-    }
-
-    private static class Node<T> {
-        Node<T> next;
-        T element;
-
-        public Node(Node<T> next, T element) {
-            this.next = next;
-            this.element = element;
-        }
-        public T getElement() {
-            return element;
         }
     }
 }
