@@ -1,19 +1,34 @@
 package core.stack;
 
 public class MateStack<T> {
-    public void push(T value) {
+    private int size;
+    private int stackSize;
+    private Object[] array;
 
+    public MateStack() {
+        stackSize = 10;
+        array = new Object[stackSize];
+    }
+
+    public void push(T value) {
+        array[++size] = value;
     }
 
     public T peek() {
-        return null;
+        if (size == 0) {
+            throw new IndexOutOfBoundsException("Stack is empty");
+        }
+        return (T) array[size];
     }
 
     public T pop() {
-        return null;
+        if (size == 0) {
+            throw new IndexOutOfBoundsException("Stack is empty");
+        }
+        return (T) array[size--];
     }
 
     public int size() {
-        return 0;
+        return size;
     }
 }
