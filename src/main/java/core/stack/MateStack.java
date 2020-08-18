@@ -1,8 +1,7 @@
 package core.stack;
 
-import java.util.EmptyStackException;
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
 public class MateStack<T> {
     private int size;
@@ -19,14 +18,16 @@ public class MateStack<T> {
     }
 
     public T peek() {
-        if (size == 0)
+        if (size == 0) {
             throw new IndexOutOfBoundsException("Stack is empty");
+        }
         return elementData.get(size - 1);
     }
 
     public T pop() {
-        if (size == 0)
+        if (size == 0) {
             throw new IndexOutOfBoundsException("Stack is empty");
+        }
         T poppedElement = peek();
         size--;
         return poppedElement;
