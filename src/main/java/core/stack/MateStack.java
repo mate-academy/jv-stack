@@ -1,36 +1,34 @@
 package core.stack;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class MateStack<T> {
-    private List<T> stackStorage;
+    private static final int CAPACITY = 100;
+
+    private T[] stackStorage;
     private int topIndex = -1;
 
     public MateStack() {
-        this.stackStorage = new ArrayList<>();
+        this.stackStorage = (T[]) new Object[CAPACITY];
     }
 
     public void push(T value) {
-        stackStorage.add(value);
-        topIndex++;
+        stackStorage[++topIndex] = value;
     }
 
     public T peek() {
         if (topIndex == -1) {
             throw new IndexOutOfBoundsException("Stack is empty");
         }
-        return stackStorage.get(topIndex);
+        return stackStorage[topIndex];
     }
 
     public T pop() {
         if (topIndex == -1) {
             throw new IndexOutOfBoundsException("Stack is empty");
         }
-        return stackStorage.remove(topIndex--);
+        return stackStorage[topIndex--];
     }
 
     public int size() {
-        return stackStorage.size();
+        return topIndex + 1;
     }
 }
