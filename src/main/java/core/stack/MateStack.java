@@ -1,7 +1,5 @@
 package core.stack;
 
-import java.util.ArrayList;
-
 public class MateStack<T> {
 
     private static final int INITIAL_CAPACITY = 10;
