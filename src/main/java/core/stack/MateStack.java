@@ -17,14 +17,14 @@ public class MateStack<T> {
     }
 
     public T peek() {
-        if (stackStorage.size() == 0) {
+        if (topIndex == -1) {
             throw new IndexOutOfBoundsException("Stack is empty");
         }
         return stackStorage.get(topIndex);
     }
 
     public T pop() {
-        if (stackStorage.size() == 0) {
+        if (topIndex == -1) {
             throw new IndexOutOfBoundsException("Stack is empty");
         }
         return stackStorage.remove(topIndex--);
