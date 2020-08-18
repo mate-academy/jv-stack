@@ -5,7 +5,7 @@ public class MateStack<T> {
     private Node<T> first;
 
     public MateStack() {
-        this.size = size = 0;
+        this.size = 0;
         this.first = null;
     }
 
