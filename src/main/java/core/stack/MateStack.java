@@ -1,19 +1,33 @@
 package core.stack;
 
-public class MateStack<T> {
-    public void push(T value) {
+import java.util.ArrayList;
+import java.util.List;
 
+public class MateStack<T> {
+    private List<T> list = new ArrayList<>();
+
+    public void push(T value) {
+        list.add(value);
     }
 
     public T peek() {
-        return null;
+        if (list.size() == 0) {
+            throw new IndexOutOfBoundsException("Stack is empty");
+        }
+        return list.get(list.size() - 1);
     }
 
     public T pop() {
-        return null;
+        if (list.size() == 0) {
+            throw new IndexOutOfBoundsException("Stack is empty");
+        }
+        T value = list.get(list.size() - 1);
+        list.remove(list.size() - 1);
+
+        return value;
     }
 
     public int size() {
-        return 0;
+        return list.size();
     }
 }
