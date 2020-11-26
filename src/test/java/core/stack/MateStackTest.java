@@ -1,28 +1,31 @@
 package core.stack;
 
+import org.junit.Before;
 import org.junit.Test;
-
-import static org.junit.Assert.*;
+import java.util.EmptyStackException;
+import static org.junit.Assert.assertEquals;
 
 public class MateStackTest {
     private MateStack<String> stack;
 
-    @Test
-    public void size_emptyStack_Ok() {
+    @Before
+    public void setUp() {
         stack = new MateStack<>();
+    }
+
+    @Test
+    public void size_emptyStack_ok() {
         assertEquals(0, stack.size());
     }
 
     @Test
-    public void size_oneElement_Ok() {
-        stack = new MateStack<>();
+    public void size_oneElement_ok() {
         stack.push("Hello");
         assertEquals(1, stack.size());
     }
 
     @Test
-    public void size_threeElements_Ok() {
-        stack = new MateStack<>();
+    public void size_threeElements_ok() {
         stack.push("Hello");
         stack.push("World");
         stack.push("Mate");
@@ -30,8 +33,7 @@ public class MateStackTest {
     }
 
     @Test
-    public void peek_oneElement_Ok() {
-        stack = new MateStack<>();
+    public void peek_oneElement_ok() {
         stack.push("Hello");
         assertEquals(1, stack.size());
         String actual = stack.peek();
@@ -41,8 +43,7 @@ public class MateStackTest {
     }
 
     @Test
-    public void peek_severalTimes_Ok() {
-        stack = new MateStack<>();
+    public void peek_severalTimes_ok() {
         stack.push("Hello");
         stack.push("World");
         assertEquals(2, stack.size());
@@ -61,22 +62,14 @@ public class MateStackTest {
         assertEquals(2, stack.size());
     }
 
-    @Test
+    @Test(expected = EmptyStackException.class)
     public void peek_emptyStack() {
-        stack = new MateStack<>();
         assertEquals(0, stack.size());
-        try {
-            stack.peek();
-        } catch (IndexOutOfBoundsException e) {
-            assertEquals(e.getMessage(), "Stack is empty");
-            return;
-        }
-        fail("Peek is not available for empty stack");
+        stack.peek();
     }
 
     @Test
-    public void pop_Ok() {
-        stack = new MateStack<>();
+    public void pop_ok() {
         stack.push("Hello");
         assertEquals(1, stack.size());
         String actual = stack.pop();
@@ -86,8 +79,7 @@ public class MateStackTest {
     }
 
     @Test
-    public void pop_threeElements_Ok() {
-        stack = new MateStack<>();
+    public void pop_threeElements_ok() {
         stack.push("Hello");
         stack.push("World");
         stack.push("Mate");
@@ -110,16 +102,9 @@ public class MateStackTest {
     }
 
 
-    @Test
+    @Test(expected = EmptyStackException.class)
     public void pop_emptyStack() {
-        stack = new MateStack<>();
         assertEquals(0, stack.size());
-        try {
-            stack.pop();
-        } catch (IndexOutOfBoundsException e) {
-            assertEquals(e.getMessage(), "Stack is empty");
-            return;
-        }
-        fail("Peek is not available for empty stack");
+        stack.pop();
     }
 }
