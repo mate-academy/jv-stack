@@ -7,4 +7,4 @@ Your implementation should be based on the array or singly linked list
 
 Throw `EmptyStackException()` where needed.
 
-[Try to avoid these common mistake while solving task](https://mate-academy.github.io/jv-program-common-mistakes/java-core/java-core/set-queue-stack-comparator/stack)
+[Try to avoid these common mistake while solving task](https://mate-academy.github.io/jv-program-common-mistakes/java-core/set-queue-stack-comparator/stack)
