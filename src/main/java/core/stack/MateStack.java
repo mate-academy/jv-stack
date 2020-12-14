@@ -16,20 +16,22 @@ public class MateStack<T> {
     }
 
     public T peek() {
-        if (size != 0) {
-            return top.value;
-        }
-        throw new EmptyStackException();
+        isEmptyStack();
+        return top.value;
     }
 
     public T pop() {
-        if (size != 0) {
-            T value = top.value;
-            top = top.prev;
-            size--;
-            return value;
+        isEmptyStack();
+        T value = top.value;
+        top = top.prev;
+        size--;
+        return value;
+    }
+
+    private void isEmptyStack() {
+        if (size == 0) {
+            throw new EmptyStackException();
         }
-        throw new EmptyStackException();
     }
 
     public int size() {
