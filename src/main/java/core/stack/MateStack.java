@@ -1,5 +1,7 @@
 package core.stack;
 
+import java.util.EmptyStackException;
+
 public class MateStack<T> {
     private static final int DEFAULT_SIZE = 10;
     private static final byte GROWTH_FACTOR = 2;
@@ -18,10 +20,16 @@ public class MateStack<T> {
     }
 
     public T peek() {
+        if (isEmpty()) {
+            throw new EmptyStackException();
+        }
         return stack[size - 1];
     }
 
     public T pop() {
+        if (isEmpty()) {
+            throw new EmptyStackException();
+        }
         T value = stack[size - 1];
         stack[size-- - 1] = null;
         return value;
@@ -29,6 +37,10 @@ public class MateStack<T> {
 
     public int size() {
         return size;
+    }
+
+    public boolean isEmpty() {
+        return size == 0;
     }
 
     private void grow(){
