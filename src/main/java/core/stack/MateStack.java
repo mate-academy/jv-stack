@@ -13,7 +13,7 @@ public class MateStack<T> {
         if (size == stack.length) {
             grow();
         }
-        stack[size] = value;
+        stack[size++] = value;
     }
 
     public T peek() {
@@ -25,7 +25,7 @@ public class MateStack<T> {
     }
 
     public int size() {
-        return 0;
+        return size;
     }
 
     private void grow(){}
