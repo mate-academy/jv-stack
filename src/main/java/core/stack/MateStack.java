@@ -2,20 +2,22 @@ package core.stack;
 
 public class MateStack<T> {
     private static final int DEFAULT_SIZE = 10;
-    private Node<T>[] stack;
-    private Node<T> top;
+    private T[] stack;
     private int size;
 
     public MateStack() {
-        this.stack = (Node<T>[]) new Node[DEFAULT_SIZE];
+        this.stack = (T[]) new Object[DEFAULT_SIZE];
     }
 
     public void push(T value) {
+        if (size == stack.length) {
+            grow();
+        }
 
     }
 
     public T peek() {
-        return null;
+        return stack[size - 1];
     }
 
     public T pop() {
@@ -26,13 +28,5 @@ public class MateStack<T> {
         return 0;
     }
 
-    private static class Node<T> {
-        private T value;
-        private Node<T> next;
-
-        public Node(T value, Node<T> next) {
-            this.value = value;
-            this.next = next;
-        }
-    }
+    private void grow(){}
 }
