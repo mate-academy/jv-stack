@@ -21,7 +21,9 @@ public class MateStack<T> {
     }
 
     public T pop() {
-        return null;
+        T value = stack[size - 1];
+        stack[size-- - 1] = null;
+        return value;
     }
 
     public int size() {
