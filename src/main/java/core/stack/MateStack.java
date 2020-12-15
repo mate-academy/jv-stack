@@ -13,7 +13,7 @@ public class MateStack<T> {
         if (size == stack.length) {
             grow();
         }
-
+        stack[size] = value;
     }
 
     public T peek() {
