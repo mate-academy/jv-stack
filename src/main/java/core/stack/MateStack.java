@@ -1,7 +1,14 @@
 package core.stack;
 
 public class MateStack<T> {
+    private static final int DEFAULT_SIZE = 10;
+    private Node<T>[] stack;
+    private Node<T> top;
+    private int size;
 
+    public MateStack() {
+        this.stack = (Node<T>[]) new Node[DEFAULT_SIZE];
+    }
 
     public void push(T value) {
 
