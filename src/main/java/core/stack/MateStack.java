@@ -2,6 +2,7 @@ package core.stack;
 
 public class MateStack<T> {
     private static final int DEFAULT_SIZE = 10;
+    private static final byte GROWTH_FACTOR = 2;
     private T[] stack;
     private int size;
 
@@ -30,5 +31,9 @@ public class MateStack<T> {
         return size;
     }
 
-    private void grow(){}
+    private void grow(){
+        T[] newStack = (T[]) new Object[stack.length * GROWTH_FACTOR];
+        System.arraycopy(stack, 0, newStack, 0, stack.length);
+        stack = newStack;
+    }
 }
