@@ -20,12 +20,11 @@ public class MateStack<T> {
 
     public T pop() {
         isEmpty();
-        T currentValue = tail.value;
         Node<T> currentNode = tail;
         tail = currentNode.previous;
         currentNode.previous = null;
         size--;
-        return currentValue;
+        return currentNode.value;
     }
 
     public int size() {
@@ -48,5 +47,4 @@ public class MateStack<T> {
         }
         throw new EmptyStackException();
     }
-
 }
