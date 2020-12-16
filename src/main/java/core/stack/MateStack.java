@@ -9,7 +9,7 @@ public class MateStack<T> {
     private int size;
 
     public MateStack() {
-        this.stack = (T[]) new Object[DEFAULT_SIZE];
+        stack = (T[]) new Object[DEFAULT_SIZE];
     }
 
     public void push(T value) {
@@ -20,16 +20,12 @@ public class MateStack<T> {
     }
 
     public T peek() {
-        if (isEmpty()) {
-            throw new EmptyStackException();
-        }
+        validatePeekAndPop();
         return stack[size - 1];
     }
 
     public T pop() {
-        if (isEmpty()) {
-            throw new EmptyStackException();
-        }
+        validatePeekAndPop();
         T value = stack[size - 1];
         stack[size-- - 1] = null;
         return value;
@@ -43,9 +39,15 @@ public class MateStack<T> {
         return size == 0;
     }
 
-    private void grow(){
+    private void grow() {
         T[] newStack = (T[]) new Object[stack.length * GROWTH_FACTOR];
         System.arraycopy(stack, 0, newStack, 0, stack.length);
         stack = newStack;
+    }
+
+    private void validatePeekAndPop() {
+        if (isEmpty()) {
+            throw new EmptyStackException();
+        }
     }
 }
