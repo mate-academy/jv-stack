@@ -17,18 +17,14 @@ public class MateStack<T> {
     }
 
     public T peek() {
-        T value = getValue(size);
-        checkToEmpty(value);
-        return value;
+        return getValue();
     }
 
     public T pop() {
-        T oldValue = getValue(size);
-
-        checkToEmpty(oldValue);
+        T oldValue = getValue();
 
         T[] oldStack = stack;
-        stack = (T[]) new Object[size - 1];
+        stack = (T[]) new Object[size];
         System.arraycopy(oldStack, 0, stack, 0, --size);
         return oldValue;
     }
@@ -45,19 +41,10 @@ public class MateStack<T> {
         }
     }
 
-    private void checkToEmpty(T value) {
-        if (value == null) {
+    private T getValue() {
+        if (size - 1 < 0) {
             throw new EmptyStackException();
         }
-    }
-
-    private T getValue(int position) {
-        if (position > 0) {
-            return stack[position - 1];
-        }
-        if (position == 0) {
-            return stack[0];
-        }
-        return null;
+        return stack[size - 1];
     }
 }
