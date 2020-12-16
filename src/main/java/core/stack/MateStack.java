@@ -9,7 +9,6 @@ public class MateStack<T> {
 
     public MateStack() {
         stack = (T[]) new Object[DEFAULT_CAPACITY];
-        size = 0;
     }
 
     public void push(T value) {
@@ -41,7 +40,7 @@ public class MateStack<T> {
     private void resize() {
         if (size == stack.length) {
             T[] oldStack = stack;
-            stack = (T[]) new Object[size + 1];
+            stack = (T[]) new Object[size + (size >> 1)];
             System.arraycopy(oldStack, 0, stack, 0, size);
         }
     }
