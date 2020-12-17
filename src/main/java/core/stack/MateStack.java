@@ -1,6 +1,7 @@
 package core.stack;
 
 public class MateStack<T> {
+
     public void push(T value) {
 
     }
