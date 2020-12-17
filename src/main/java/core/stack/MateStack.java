@@ -7,19 +7,11 @@ public class MateStack<T> {
     private Node<T> tail;
 
     public MateStack() {
-        tail = new Node<>(null, null);
     }
 
     public void push(T value) {
-        if (size == 0) {
-            tail.value = value;
-            size++;
-            return;
-        }
-        Node<T> tempNode = new Node<>(tail, value);
-        tail = tempNode;
+        tail = new Node<>(tail, value);
         size++;
-
     }
 
     public T peek() {
@@ -28,7 +20,6 @@ public class MateStack<T> {
     }
 
     public T pop() {
-        checkSize();
         T resultValue = peek();
         tail = tail.prev;
         size--;
