@@ -3,8 +3,8 @@ package core.stack;
 import java.util.EmptyStackException;
 
 public class MateStack<T> {
-    int size;
-    Node<T> current;
+    private int size;
+    private Node<T> current;
 
     public void push(T value) {
         if (size == 0) {
