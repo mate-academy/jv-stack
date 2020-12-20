@@ -6,7 +6,7 @@ public class MateStack<T> {
     public static final int DEFAULT_CAPACITY = 10;
     public static final int MULTIPLICATOR = 2;
 
-    private T [] stackArray;
+    private T[] stackArray;
     private int size;
 
     public MateStack() {
