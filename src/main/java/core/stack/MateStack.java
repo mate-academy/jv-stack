@@ -3,8 +3,8 @@ package core.stack;
 import java.util.EmptyStackException;
 
 public class MateStack<T> {
-    public static final int DEFAULT_CAPACITY = 10;
-    public static final int MULTIPLICATOR = 2;
+    private static final int DEFAULT_CAPACITY = 10;
+    private static final int MULTIPLICATOR = 2;
 
     private T[] stackArray;
     private int size;
@@ -35,7 +35,7 @@ public class MateStack<T> {
         return size;
     }
 
-    public void resize() {
+    private void resize() {
         if (size == stackArray.length) {
             T[] newStackArray = (T[]) new Object[stackArray.length * MULTIPLICATOR];
             System.arraycopy(stackArray, 0, newStackArray, 0, stackArray.length);
@@ -43,7 +43,7 @@ public class MateStack<T> {
         }
     }
 
-    public void emptyStack() {
+    private void emptyStack() {
         if (size == 0) {
             throw new EmptyStackException();
         }
