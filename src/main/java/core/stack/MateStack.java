@@ -9,7 +9,6 @@ public class MateStack<T> {
 
     public MateStack() {
         stack = (T[]) new Object[DEFAULT_STACK_SIZE];
-        size = 0;
     }
 
     public void push(T value) {
@@ -18,13 +17,11 @@ public class MateStack<T> {
     }
 
     public T peek() {
-        isEmptyStack();
-        return stack[getIndexOfLastElement()];
+        return getElement();
     }
 
     public T pop() {
-        isEmptyStack();
-        T lastElement = stack[getIndexOfLastElement()];
+        T lastElement = getElement();
         stack[getIndexOfLastElement()] = null;
         size--;
         return lastElement;
@@ -42,5 +39,10 @@ public class MateStack<T> {
 
     private int getIndexOfLastElement() {
         return size - 1;
+    }
+
+    private T getElement() {
+        isEmptyStack();
+        return stack[getIndexOfLastElement()];
     }
 }
