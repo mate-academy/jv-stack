@@ -10,7 +10,7 @@ public class MateStack<T> {
     private int size;
 
     public MateStack() {
-        this.stackArray = (T[]) new Object[DEFAULT_CAPACITY];
+        stackArray = (T[]) new Object[DEFAULT_CAPACITY];
     }
 
     public void push(T value) {
