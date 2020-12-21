@@ -1,19 +1,57 @@
 package core.stack;
 
-public class MateStack<T> {
-    public void push(T value) {
+import java.util.EmptyStackException;
 
+public class MateStack<T> {
+    private Node<T> tail;
+    private int size;
+
+    private static class Node<T> {
+        private final T value;
+        private Node<T> prev;
+
+        public Node(T value) {
+            this.value = value;
+        }
+    }
+
+    public MateStack() {
+        tail = null;
+    }
+
+    public void push(T value) {
+        Node<T> newNode = new Node<>(value);
+        newNode.prev = tail;
+        tail = newNode;
+        size++;
     }
 
     public T peek() {
-        return null;
+        checkForEmptyStack();
+        return tail.value;
     }
 
-    public T pop() {
-        return null;
+    public T pop() throws EmptyStackException {
+        checkForEmptyStack();
+        T resultValue = tail.value;
+        Node<T> temporaryNode = tail.prev;
+        tail = null;
+        size--;
+        tail = temporaryNode;
+        return resultValue;
     }
 
     public int size() {
-        return 0;
+        return size;
+    }
+
+    private boolean isEmpty() {
+        return size == 0;
+    }
+
+    private void checkForEmptyStack() {
+        if (isEmpty()) {
+            throw new EmptyStackException();
+        }
     }
 }
