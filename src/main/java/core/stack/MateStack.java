@@ -8,7 +8,7 @@ public class MateStack<T> {
     private int size;
 
     public MateStack() {
-        this.stack = (T[]) new Object[DEFAULT_CAPACITY];
+        stack = (T[]) new Object[DEFAULT_CAPACITY];
     }
 
     public void push(T value) {
@@ -27,8 +27,7 @@ public class MateStack<T> {
         checkIfEmpty();
         T value = stack[size - 1];
         T[] newStack = (T[]) new Object[size];
-        System.arraycopy(stack, 0, newStack, 0, size - 1);
-        size--;
+        System.arraycopy(stack, 0, newStack, 0, --size);
         return value;
     }
 
@@ -37,18 +36,15 @@ public class MateStack<T> {
     }
 
     private void grow() {
-        int oldCapacity = stack.length;
-        if (oldCapacity > 0) {
-            int newCapacity = oldCapacity + (oldCapacity / 2);
-            T[] bufferArray = (T[]) new Object[oldCapacity];
-            System.arraycopy(stack, 0, bufferArray,0, size);
-            stack = (T[]) new Object[newCapacity];
-            System.arraycopy(bufferArray, 0, stack,0, size);
-        }
+        int capacity = stack.length;
+        capacity += capacity / 2;
+        T[] bufferArray = (T[]) new Object[capacity];
+        System.arraycopy(stack, 0, bufferArray,0, size);
+        stack = bufferArray;
     }
 
     private void checkIfEmpty() {
-        if (size - 1 < 0) {
+        if (size == 0) {
             throw new EmptyStackException();
         }
     }
