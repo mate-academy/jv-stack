@@ -1,5 +1,6 @@
 package core.stack;
 
+import java.util.Arrays;
 import java.util.EmptyStackException;
 
 public class MateStack<T> {
@@ -12,6 +13,7 @@ public class MateStack<T> {
     }
 
     public void push(T value) {
+        resize();
         stack[size] = value;
         size++;
     }
@@ -44,5 +46,13 @@ public class MateStack<T> {
     private T getElement() {
         isEmptyStack();
         return stack[getIndexOfLastElement()];
+    }
+
+    private boolean resize() {
+        if (size == stack.length) {
+            stack = Arrays.copyOf(stack, (int) (stack.length * 1.5));
+            return true;
+        }
+        return false;
     }
 }
