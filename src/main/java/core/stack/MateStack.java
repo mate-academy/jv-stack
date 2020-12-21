@@ -12,20 +12,22 @@ public class MateStack<T> {
     }
 
     public T peek() {
-        if (size == 0) {
-            throw new EmptyStackException();
-        }
+        validateSize();
         return current.value;
     }
 
     public T pop() {
-        if (size == 0) {
-            throw new EmptyStackException();
-        }
+        validateSize();
         T value = current.value;
         current = current.prev;
         --size;
         return value;
+    }
+
+    private void validateSize() {
+        if (size == 0) {
+            throw new EmptyStackException();
+        }
     }
 
     public int size() {
