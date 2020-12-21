@@ -26,7 +26,7 @@ public class MateStack<T> {
     public T pop() {
         checkIfEmpty();
         T value = stack[size - 1];
-        stack[size--] = null;
+        stack[size-- - 1] = null;
         return value;
     }
 
