@@ -3,59 +3,29 @@ package core.stack;
 import java.util.EmptyStackException;
 
 public class MateStack<T> {
-    private Node<T> head;
+    private Node<T> tail;
     private int size;
 
     public void push(T value) {
-        if (head == null) {
-            head = new Node<>(null, value);
+        if (tail == null) {
+            tail = new Node<>(null, value);
         } else {
-            Node<T> current = head;
-            while (true) {
-                if (current.next == null) {
-                    current.next = new Node<>(null, value);
-                    break;
-                }
-                current = current.next;
-            }
+            Node<T> newNode = new Node<>(tail, value);
+            tail = newNode;
         }
         size++;
     }
 
     public T peek() {
         sizeChecker(size);
-        Node<T> current = head;
-        while (true) {
-            if (current.next == null) {
-                return current.item;
-            }
-            current = current.next;
-        }
+        return tail.item;
     }
 
     public T pop() {
         sizeChecker(size);
-        T retValue;
-        Node<T> last = head;
-        while (true) {
-            if (size > 2 && last.next.next == null) {
-                retValue = last.next.item;
-                last.next = null;
-                size--;
-                break;
-            } else if (size == 2) {
-                retValue = head.next.item;
-                head.next = null;
-                size--;
-                break;
-            } else if (size == 1) {
-                retValue = head.item;
-                head = null;
-                size--;
-                break;
-            }
-            last = head.next;
-        }
+        T retValue = tail.item;
+        tail = tail.prev;
+        size--;
         return retValue;
     }
 
@@ -70,11 +40,11 @@ public class MateStack<T> {
     }
 
     private static class Node<T> {
-        Node<T> next;
-        T item;
+        private Node<T> prev;
+        private T item;
 
-        public Node(Node<T> next, T value) {
-            this.next = next;
+        public Node(Node<T> prev, T value) {
+            this.prev = prev;
             this.item = value;
         }
     }
