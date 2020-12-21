@@ -33,7 +33,7 @@ public class MateStack<T> {
 
     public T pop() throws EmptyStackException {
         checkForEmptyStack();
-        T resultValue = tail.value;
+        final T resultValue = tail.value;
         Node<T> temporaryNode = tail.prev;
         tail = null;
         size--;
