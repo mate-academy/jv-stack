@@ -1,31 +1,55 @@
 package core.stack;
 
-import java.util.ArrayList;
 import java.util.EmptyStackException;
-import java.util.List;
 
 public class MateStack<T> {
-    private List<T> innerArray = new ArrayList<>();
+    private static final int INITIAL_LENGTH = 10;
+
+    private T[] elementData;
+    private int size;
+
+    public MateStack() {
+        elementData = (T[]) new Object[INITIAL_LENGTH];
+    }
 
     public void push(T value) {
-        innerArray.add(value);
+        if (!checkCapacity()) {
+            resize();
+        }
+        elementData[size] = value;
+        size++;
     }
 
     public T peek() {
         if (size() == 0) {
             throw new EmptyStackException();
         }
-        return (innerArray.get(size() - 1));
+        return elementData[size - 1];
     }
 
     public T pop() {
         if (size() == 0) {
             throw new EmptyStackException();
         }
-        return innerArray.remove(size() - 1);
+        size--;
+        return elementData[size];
     }
 
     public int size() {
-        return innerArray.size();
+        return size;
+    }
+
+    private boolean checkCapacity() {
+        return size < elementData.length;
+    }
+
+    private void resize() {
+        T[] oldData = elementData;
+        elementData = (T[]) new Object[getNewCapacity()];
+        System.arraycopy(oldData, 0, elementData, 0, size);
+    }
+
+    private int getNewCapacity() {
+        return elementData.length * 3 / 2 + 1;
     }
 }
