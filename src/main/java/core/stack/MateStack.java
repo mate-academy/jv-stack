@@ -7,12 +7,7 @@ public class MateStack<T> {
     private Node<T> current;
 
     public void push(T value) {
-        if (size == 0) {
-            current = new Node<>(null, value);
-        } else {
-            Node<T> current = this.current;
-            this.current = new Node<>(current, value);
-        }
+        current = new Node<>(current, value);
         ++size;
     }
 
