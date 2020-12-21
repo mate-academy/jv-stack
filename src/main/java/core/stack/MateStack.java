@@ -19,7 +19,7 @@ public class MateStack<T> {
     public T pop() {
         checkSize();
         T value = top.value;
-        top = top.top;
+        top = top.previous;
         size--;
         return value;
     }
@@ -36,11 +36,11 @@ public class MateStack<T> {
 
     private static class Node<T> {
         private T value;
-        private Node<T> top;
+        private Node<T> previous;
 
         public Node(T value, Node<T> previous) {
             this.value = value;
-            this.top = previous;
+            this.previous = previous;
         }
     }
 }
