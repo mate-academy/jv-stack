@@ -26,8 +26,7 @@ public class MateStack<T> {
     public T pop() {
         checkIfEmpty();
         T value = stack[size - 1];
-        T[] newStack = (T[]) new Object[size];
-        System.arraycopy(stack, 0, newStack, 0, --size);
+        stack[size--] = null;
         return value;
     }
 
