@@ -20,11 +20,9 @@ public class MateStack<T> {
 
     public T pop() throws EmptyStackException {
         checkForEmptyStack();
-        final T resultValue = tail.value;
-        Node<T> temporaryNode = tail.prev;
-        tail = null;
+        T resultValue = tail.value;
+        tail = tail.prev;
         size--;
-        tail = temporaryNode;
         return resultValue;
     }
 
