@@ -49,11 +49,9 @@ public class MateStack<T> {
         return stack[getIndexOfLastElement()];
     }
 
-    private boolean resize() {
+    private void resize() {
         if (size == stack.length) {
             stack = Arrays.copyOf(stack, (int) (stack.length * MAGNIFICATION_FACTOR));
-            return true;
         }
-        return false;
     }
 }
