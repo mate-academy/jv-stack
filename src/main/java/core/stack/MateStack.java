@@ -22,10 +22,7 @@ public class MateStack<T> {
 
     public T pop() {
         T oldValue = getValue();
-
-        T[] oldStack = stack;
-        stack = (T[]) new Object[size];
-        System.arraycopy(oldStack, 0, stack, 0, --size);
+        stack[--size] = null;
         return oldValue;
     }
 
@@ -42,7 +39,7 @@ public class MateStack<T> {
     }
 
     private T getValue() {
-        if (size - 1 < 0) {
+        if (size == 0) {
             throw new EmptyStackException();
         }
         return stack[size - 1];
