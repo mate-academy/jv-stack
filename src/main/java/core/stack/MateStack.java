@@ -38,7 +38,7 @@ public class MateStack<T> {
         int capacity = stack.length;
         capacity += capacity / 2;
         T[] bufferArray = (T[]) new Object[capacity];
-        System.arraycopy(stack, 0, bufferArray,0, size);
+        System.arraycopy(stack, 0, bufferArray, 0, size);
         stack = bufferArray;
     }
 
