@@ -7,8 +7,7 @@ public class MateStack<T> {
     private int size;
 
     public void push(T value) {
-        Node<T> newNode = new Node<>(tail, value);
-        tail = newNode;
+        tail = new Node<>(tail, value);
         size++;
     }
 
