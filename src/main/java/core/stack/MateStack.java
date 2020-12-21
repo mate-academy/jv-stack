@@ -5,6 +5,7 @@ import java.util.EmptyStackException;
 
 public class MateStack<T> {
     private static final int DEFAULT_STACK_SIZE = 10;
+    private static final double MAGNIFICATION_FACTOR = 1.5;
     private T[] stack;
     private int size;
 
@@ -50,7 +51,7 @@ public class MateStack<T> {
 
     private boolean resize() {
         if (size == stack.length) {
-            stack = Arrays.copyOf(stack, (int) (stack.length * 1.5));
+            stack = Arrays.copyOf(stack, (int) (stack.length * MAGNIFICATION_FACTOR));
             return true;
         }
         return false;
