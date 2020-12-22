@@ -3,29 +3,24 @@ package core.stack;
 import java.util.EmptyStackException;
 
 public class MateStack<T> {
-    private Node<T> head;
+    private Node<T> tail;
     private int size;
 
-    public MateStack() {
-        this.size = 0;
-    }
-
     public void push(T value) {
-        Node<T> newNode = new Node<>(value, head);
-        head = newNode;
+        tail = new Node<>(value, tail);
         size++;
     }
 
     public T peek() {
         checkLength();
-        return head.value;
+        return tail.value;
     }
 
     public T pop() {
         checkLength();
         size--;
-        Node<T> removedNode = head;
-        head = head.prev;
+        Node<T> removedNode = tail;
+        tail = tail.prev;
         return removedNode.value;
     }
 
