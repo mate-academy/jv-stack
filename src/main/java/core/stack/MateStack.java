@@ -38,7 +38,7 @@ public class MateStack<T> {
     }
 
     private void growStack() {
-        stack = Arrays.copyOf(stack, INITIAL_CAPACITY * CAPACITY_MULTIPLIER);
+        stack = Arrays.copyOf(stack, stack.length * CAPACITY_MULTIPLIER);
     }
 
     private void checkStack() {
