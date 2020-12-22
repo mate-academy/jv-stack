@@ -3,11 +3,12 @@ package core.stack;
 import java.util.EmptyStackException;
 
 public class MateStack<T> {
+    private static final int DEFAULT_CAPACITY = 10;
     private Object[] elementData;
     private int size;
 
     public MateStack() {
-        elementData = new Object[10];
+        elementData = new Object[DEFAULT_CAPACITY];
     }
 
     public void push(T value) {
