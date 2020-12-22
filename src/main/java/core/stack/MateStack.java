@@ -3,6 +3,7 @@ package core.stack;
 import java.util.EmptyStackException;
 
 public class MateStack<T> {
+    private final static float LOAD_COEFFICIENT = 1.5f;
     private T[] stack;
     private int size;
     private int capacity;
@@ -14,27 +15,19 @@ public class MateStack<T> {
     }
 
     public void push(T value) {
-        size++;
         if (size > capacity) {
             grow();
         }
-        stack[size - 1] = value;
+        stack[size] = value;
+        size++;
     }
 
     public T peek() {
-        if (size == 0) {
-            throw new EmptyStackException();
-        }
-        return stack[size - 1];
+        return peekItem();
     }
 
     public T pop() {
-        if (size == 0) {
-            throw new EmptyStackException();
-        }
-        T lastItem = stack[size - 1];
-        size--;
-        return lastItem;
+        return popItem();
     }
 
     public int size() {
@@ -42,11 +35,27 @@ public class MateStack<T> {
     }
 
     private void grow() {
-        capacity *= 1.5;
+        capacity *= LOAD_COEFFICIENT;
         T[] newStack = (T[]) new Object[capacity];
         for (int i = 0; i < size; i++) {
             newStack[i] = stack[i];
         }
         stack = newStack;
+    }
+
+    private T peekItem() {
+        if (size == 0) {
+            throw new EmptyStackException();
+        }
+        return stack[size - 1];
+    }
+
+    private T popItem() {
+        if (size == 0) {
+            throw new EmptyStackException();
+        }
+        T lastItem = stack[size - 1];
+        size--;
+        return lastItem;
     }
 }
