@@ -3,12 +3,12 @@ package core.stack;
 import java.util.EmptyStackException;
 
 public class MateStack<T> {
-    private Node<T> tail = null;
+    private Node<T> tail;
     private int size;
 
     public void push(T value) {
         Node<T> current = new Node<>(value, tail);
-        tail = current; //we can inline but it will be less readable
+        tail = current;
         size++;
     }
 
