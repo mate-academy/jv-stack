@@ -3,7 +3,7 @@ package core.stack;
 import java.util.EmptyStackException;
 
 public class MateStack<T> {
-    private final static float LOAD_COEFFICIENT = 1.5f;
+    private static final float LOAD_COEFFICIENT = 1.5f;
     private T[] stack;
     private int size;
     private int capacity;
