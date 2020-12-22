@@ -33,16 +33,16 @@ public class MateStack<T> {
         return tail.value;
     }
 
+    public int size() {
+        return size;
+    }
+
     public T pop() {
         checkNull();
         Node<T> current = tail;
         tail = tail.prev;
         size--;
         return current.value;
-    }
-
-    public int size() {
-        return size;
     }
 
     private void checkNull() {
