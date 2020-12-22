@@ -21,13 +21,14 @@ public class MateStack<T> {
     }
 
     public T peek() {
-        getCheckSize();
+        checkSize();
         return (T) elementData[size - 1];
     }
 
     public T pop() {
         T value = peek();
-        removeElement(size() - 1);
+        elementData[size - 1] = null;
+        size--;
         return value;
     }
 
@@ -37,22 +38,11 @@ public class MateStack<T> {
 
     private void resize() {
         elementData = Arrays.copyOf(elementData,
-                DEFAULT_CAPACITY * RESIZE_ELEMENT_DATA);
+                size * RESIZE_ELEMENT_DATA);
     }
 
-    private void removeElement(int index) {
-        if (index >= size || index < 0) {
-            throw new ArrayIndexOutOfBoundsException("Index incorrect");
-        }
-        if (size - index - 1 > 0) {
-            System.arraycopy(elementData, index + 1,
-                    elementData, index, size - index - 1);
-        }
-        elementData[size--] = null;
-    }
-
-    private void getCheckSize() {
-        if (size() == 0) {
+    private void checkSize() {
+        if (size == 0) {
             throw new EmptyStackException();
         }
     }
