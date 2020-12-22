@@ -23,11 +23,13 @@ public class MateStack<T> {
     }
 
     public T peek() {
-        return peekItem();
+        return getLastItem();
     }
 
     public T pop() {
-        return popItem();
+        T lastItem = getLastItem();
+        size--;
+        return lastItem;
     }
 
     public int size() {
@@ -43,19 +45,10 @@ public class MateStack<T> {
         stack = newStack;
     }
 
-    private T peekItem() {
-        if (size == 0) {
-            throw new EmptyStackException();
+    private T getLastItem() {
+        if (size != 0) {
+            return stack[size - 1];
         }
-        return stack[size - 1];
-    }
-
-    private T popItem() {
-        if (size == 0) {
-            throw new EmptyStackException();
-        }
-        T lastItem = stack[size - 1];
-        size--;
-        return lastItem;
+        throw new EmptyStackException();
     }
 }
