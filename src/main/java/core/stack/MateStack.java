@@ -4,7 +4,6 @@ import java.util.EmptyStackException;
 
 public class MateStack<T> {
     private static final int INITIAL_LENGTH = 10;
-
     private T[] elementData;
     private int size;
 
@@ -31,8 +30,10 @@ public class MateStack<T> {
         if (size() == 0) {
             throw new EmptyStackException();
         }
+        T output = elementData[size - 1];
+        System.arraycopy(elementData, size, elementData, size - 1, 1);
         size--;
-        return elementData[size];
+        return output;
     }
 
     public int size() {
