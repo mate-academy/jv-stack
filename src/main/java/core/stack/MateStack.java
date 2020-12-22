@@ -12,12 +12,12 @@ public class MateStack<T> {
     }
 
     public T peek() {
-        return stackIsEmpty() ? tail.value : null;
+        return stackIsNotEmpty() ? tail.value : null;
     }
 
     public T pop() {
         T value = null;
-        if (stackIsEmpty()) {
+        if (stackIsNotEmpty()) {
             value = tail.value;
             Node<T> oldNode = tail;
             tail = oldNode.prev;
@@ -40,7 +40,7 @@ public class MateStack<T> {
         }
     }
 
-    private boolean stackIsEmpty() {
+    private boolean stackIsNotEmpty() {
         if (size != 0) {
             return true;
         }
