@@ -1,9 +1,11 @@
 package core.stack;
 
+import java.util.Arrays;
 import java.util.EmptyStackException;
 
 public class MateStack<T> {
     private static final int DEFAULT_CAPACITY = 10;
+    private static final int RESIZE_ELEMENT_DATA = 2;
     private Object[] elementData;
     private int size;
 
@@ -12,13 +14,14 @@ public class MateStack<T> {
     }
 
     public void push(T value) {
+        if (size == elementData.length) {
+            resize();
+        }
         elementData[size++] = value;
     }
 
     public T peek() {
-        if (size() == 0) {
-            throw new EmptyStackException();
-        }
+        getCheckSize();
         return (T) elementData[size - 1];
     }
 
@@ -32,6 +35,11 @@ public class MateStack<T> {
         return size;
     }
 
+    private void resize() {
+        elementData = Arrays.copyOf(elementData,
+                DEFAULT_CAPACITY * RESIZE_ELEMENT_DATA);
+    }
+
     private void removeElement(int index) {
         if (index >= size || index < 0) {
             throw new ArrayIndexOutOfBoundsException("Index incorrect");
@@ -41,5 +49,11 @@ public class MateStack<T> {
                     elementData, index, size - index - 1);
         }
         elementData[size--] = null;
+    }
+
+    private void getCheckSize() {
+        if (size() == 0) {
+            throw new EmptyStackException();
+        }
     }
 }
