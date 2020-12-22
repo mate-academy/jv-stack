@@ -8,7 +8,7 @@ public class MateStack<T> {
     private int size = 0;
 
     public MateStack() {
-        this.stack = (T[]) new Object[DEFAULT_CAPACITY];
+        stack = (T[]) new Object[DEFAULT_CAPACITY];
     }
 
     public void push(T value) {
