@@ -36,7 +36,7 @@ public class MateStack<T> {
 
     private static class Node<T> {
         private T value;
-        private  Node next;
+        private Node next;
 
         public Node(T value, Node<T> next) {
             this.value = value;
