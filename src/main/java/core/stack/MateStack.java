@@ -3,19 +3,18 @@ package core.stack;
 import java.util.EmptyStackException;
 
 public class MateStack<T> {
-    MyNode<T> first;
-    MyNode<T> last;
-    int size;
+    private MyNode<T> first;
+    private int size;
 
-    MateStack() {
-        size = 0;
+    private static class MyNode<T> {
+        T value;
+        MyNode<T> next;
     }
 
     public void push(T value) {
         MyNode<T> currentNode = new MyNode<>();
         if (size == 0) {
             first = currentNode;
-            last = currentNode;
             currentNode.next = null;
         } else {
             currentNode.next = first;
@@ -32,10 +31,10 @@ public class MateStack<T> {
 
     public T pop() {
         checkStack();
-        T memValue = first.value;
+        T currentNodeValue = first.value;
         first = first.next;
         size--;
-        return memValue;
+        return currentNodeValue;
     }
 
     public int size() {
