@@ -3,7 +3,7 @@ package core.stack;
 import java.util.EmptyStackException;
 
 public class MateStack<T> {
-    private int size = 0;
+    private int size;
     private Node<T> first;
 
     public void push(T value) {
@@ -35,8 +35,8 @@ public class MateStack<T> {
     }
 
     private static class Node<T> {
-        T value;
-        Node next;
+        private T value;
+        private  Node next;
 
         public Node(T value, Node<T> next) {
             this.value = value;
