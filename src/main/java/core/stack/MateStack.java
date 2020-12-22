@@ -12,12 +12,6 @@ public class MateStack<T> {
         size = 0;
     }
 
-    private void grow() {
-        Object[] newArray = new Object[array.length + (array.length >> 1)];
-        System.arraycopy(array, 0, newArray, 0, array.length);
-        array = (T[]) newArray;
-    }
-
     public void push(T value) {
         if (size == array.length) {
             grow();
@@ -34,13 +28,19 @@ public class MateStack<T> {
     public T pop() {
         checkException();
         T element = array[size - 1];
-        System.arraycopy(array, size + 1, array, size - 1, 0);
+        array[size - 1] = null;
         size--;
         return element;
     }
 
     public int size() {
         return size;
+    }
+
+    private void grow() {
+        Object[] newArray = new Object[array.length + (array.length >> 1)];
+        System.arraycopy(array, 0, newArray, 0, array.length);
+        array = (T[]) newArray;
     }
 
     private void checkException() {
