@@ -9,13 +9,13 @@ public class MateStack<T> {
     private int size;
 
     public MateStack() {
-        this.array = (T[]) new Object[INITIAL_SIZE_CAPACITY];
+        array = (T[]) new Object[INITIAL_SIZE_CAPACITY];
         size = 0;
     }
 
     public void push(T value) {
         if (size == array.length) {
-            array = grow(array);
+            grow(array);
         }
         array[size] = value;
         size++;
@@ -39,10 +39,9 @@ public class MateStack<T> {
         return size;
     }
 
-    private T[] grow(T[] arrayValues) {
+    private void grow(T[] arrayValues) {
         T[] temporaryArray = arrayValues;
         arrayValues = (T[]) new Object[arrayValues.length + ADDING_SIZE];
         System.arraycopy(temporaryArray, 0, arrayValues, 0, temporaryArray.length);
-        return arrayValues;
     }
 }
