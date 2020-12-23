@@ -4,8 +4,7 @@ import java.util.EmptyStackException;
 
 public class MateStack<T> {
     private static final int CAPACITY = 10;
-    private static final double COEFFICIENT = 0.5;
-    private static final int ONE = 1;
+    private static final double COEFFICIENT = 1.5;
     private T[] array;
     private int size;
 
@@ -24,13 +23,13 @@ public class MateStack<T> {
 
     public T peek() {
         isEmptyStack();
-        return array[size - ONE];
+        return array[size - 1];
     }
 
     public T pop() {
         isEmptyStack();
-        T currentValue = array[size - ONE];
-        array[size - ONE] = null;
+        T currentValue = array[size - 1];
+        array[size - 1] = null;
         size--;
         return currentValue;
     }
@@ -41,7 +40,7 @@ public class MateStack<T> {
 
     private void resize() {
         T[] oldArray = array;
-        array = (T[]) new Object[(int) (array.length * COEFFICIENT + array.length)];
+        array = (T[]) new Object[(int) (array.length * COEFFICIENT)];
         System.arraycopy(array, 0, oldArray, 0, oldArray.length);
     }
 
