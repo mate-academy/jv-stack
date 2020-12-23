@@ -7,16 +7,14 @@ public class MateStack<T> {
     private static final int DEFAULT_CAPACITY = 10;
     private T[] stack;
     private int size;
-    private int capacity;
 
     public MateStack() {
         size = 0;
-        capacity = DEFAULT_CAPACITY;
-        stack = (T[]) new Object[capacity];
+        stack = (T[]) new Object[DEFAULT_CAPACITY];
     }
 
     public void push(T value) {
-        if (size >= capacity) {
+        if (size >= stack.length) {
             grow();
         }
         stack[size] = value;
@@ -39,9 +37,8 @@ public class MateStack<T> {
     }
 
     private void grow() {
-        capacity *= LOAD_COEFFICIENT;
-        T[] newStack = (T[]) new Object[capacity];
-        copyItems(newStack);
+        int newLength = (int) (LOAD_COEFFICIENT * stack.length);
+        System.arraycopy(stack, 0, stack, 0, newLength);
     }
 
     private T getLastItem() {
@@ -49,12 +46,5 @@ public class MateStack<T> {
             return stack[size - 1];
         }
         throw new EmptyStackException();
-    }
-
-    private void copyItems(T[] tempStack) {
-        for (int i = 0; i < size; i++) {
-            tempStack[i] = stack[i];
-        }
-        stack = tempStack;
     }
 }
