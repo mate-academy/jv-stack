@@ -9,7 +9,7 @@ public class MateStack<T> {
     private int size;
 
     public MateStack() {
-        this.array = (T[]) new Object[INITIAL_SIZE_CAPACITY];
+        array = (T[]) new Object[INITIAL_SIZE_CAPACITY];
         size = 0;
     }
 
