@@ -6,11 +6,6 @@ public class MateStack<T> {
     private MyNode<T> first;
     private int size;
 
-    private static class MyNode<T> {
-        T value;
-        MyNode<T> next;
-    }
-
     public void push(T value) {
         MyNode<T> currentNode = new MyNode<>();
         if (size == 0) {
@@ -45,5 +40,10 @@ public class MateStack<T> {
         if (size == 0) {
             throw new EmptyStackException();
         }
+    }
+
+    private static class MyNode<T> {
+        T value;
+        MyNode<T> next;
     }
 }
