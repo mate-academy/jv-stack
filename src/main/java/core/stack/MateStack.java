@@ -39,7 +39,7 @@ public class MateStack<T> {
         return size;
     }
 
-    private T[] grow(T[] arrayValues) {
+    private void grow(T[] arrayValues) {
         T[] temporaryArray = arrayValues;
         arrayValues = (T[]) new Object[arrayValues.length + ADDING_SIZE];
         System.arraycopy(temporaryArray, 0, arrayValues, 0, temporaryArray.length);
