@@ -7,7 +7,7 @@ public class MateStack<T> {
     private int size;
 
     public void push(T value) {
-        lastNode = new Node<> (lastNode,value);
+        lastNode = new Node<>(lastNode,value);
         size++;
     }
 
@@ -28,7 +28,7 @@ public class MateStack<T> {
         return size;
     }
 
-    private void sizeCheck(){
+    private void sizeCheck() {
         if (size == 0) {
             throw new EmptyStackException();
         }
