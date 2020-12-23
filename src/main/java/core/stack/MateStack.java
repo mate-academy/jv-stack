@@ -4,7 +4,7 @@ import java.util.EmptyStackException;
 
 public class MateStack<T> {
     private static final int INITIAL_CAPACITY = 10;
-    private static final int CAPACITY_MULTIPLY = 2;
+    private static final int CAPACITY_MULTIPLIER = 2;
     private T[] array;
     private int capacity;
 
@@ -21,7 +21,7 @@ public class MateStack<T> {
     }
 
     private void resize() {
-        T[] newArray = (T[]) new Object[capacity * CAPACITY_MULTIPLY];
+        T[] newArray = (T[]) new Object[capacity * CAPACITY_MULTIPLIER];
         System.arraycopy(array, 0, newArray, 0, array.length);
         array = newArray;
     }
