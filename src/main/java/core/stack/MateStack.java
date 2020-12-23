@@ -38,9 +38,7 @@ public class MateStack<T> {
 
     private void grow() {
         int newLength = (int) (LOAD_COEFFICIENT * stack.length);
-        T[] newStack = (T[]) new Object[newLength];
-        System.arraycopy(stack, 0, newStack, 0, newLength);
-        stack = newStack;
+        System.arraycopy(stack, 0, stack, 0, stack.length);
     }
 
     private T getLastItem() {
