@@ -3,13 +3,13 @@ package core.stack;
 import java.util.EmptyStackException;
 
 public class MateStack<T> {
-    private static final int INITIAL_CAPACITY = 10;
+    private static final int INITIAL_CAPACITY_OF_ARRAY = 10;
     private static final int CAPACITY_MULTIPLIER = 2;
     private T[] array;
     private int capacity;
 
     public MateStack() {
-        array = (T[]) new Object[INITIAL_CAPACITY];
+        array = (T[]) new Object[INITIAL_CAPACITY_OF_ARRAY];
     }
 
     public void push(T value) {
