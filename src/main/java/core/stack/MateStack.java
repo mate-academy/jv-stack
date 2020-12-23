@@ -8,9 +8,6 @@ public class MateStack<T> {
 
     public void push(T value) {
         MyNode<T> currentNode = new MyNode<>(value, first);
-        if (size == 0) {
-            currentNode.next = null;
-        }
         first = currentNode;
         size++;
     }
@@ -42,7 +39,7 @@ public class MateStack<T> {
         private T value;
         private MyNode<T> next;
 
-        MyNode(T value, MyNode<T> next) {
+        private MyNode(T value, MyNode<T> next) {
             this.value = value;
             this.next = next;
         }
