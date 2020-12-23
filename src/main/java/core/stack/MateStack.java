@@ -4,61 +4,43 @@ import java.util.EmptyStackException;
 
 public class MateStack<T> {
     private int size;
-    private Node<T> head;
-
-    private static class Node<T> {
-        T value;
-        Node<T> next;
-
-        Node(T element, Node<T> next) {
-            this.next = next;
-            this.value = element;
-        }
-    }
+    private Node<T> tail;
 
     public void push(T value) {
-        Node<T> temp = new Node<>(value, null);
-        Node<T> current = head;
-        if (head == null) {
-            head = temp;
-        } else {
-
-            while (current.next != null) {
-                current = current.next;
-            }
-            current.next = temp;
-        }
+        tail = new Node<T>(value, tail);
         size++;
     }
 
     public T peek() {
-        if (size == 0) {
-            throw new EmptyStackException();
-        }
-        Node<T> current = head;
-        while (current.next != null) {
-            current = current.next;
-        }
-        return current.value;
+        ifEmpty();
+        return tail.value;
     }
 
     public T pop() {
-        if (size == 0) {
-            throw new EmptyStackException();
-        }
-        Node<T> current = head;
-        Node<T> prev = head;
-
-        while (current.next != null) {
-            prev = current;
-            current = current.next;
-        }
-        prev.next = null;
+        ifEmpty();
+        Node<T> temp = tail;
+        tail = tail.prev;
         size--;
-        return current.value;
+        return temp.value;
     }
 
     public int size() {
         return size;
+    }
+
+    private static class Node<T> {
+        T value;
+        Node<T> prev;
+
+        Node(T element, Node<T> prev) {
+            this.prev = prev;
+            this.value = element;
+        }
+    }
+
+    private void ifEmpty() {
+        if (size == 0) {
+            throw new EmptyStackException();
+        }
     }
 }
