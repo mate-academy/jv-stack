@@ -8,9 +8,7 @@ public class MateStack<T> {
 
     public void push(T value) {
         Node<T> newNode = new Node<>(value, null);
-        if (size != 0) {
-            newNode.prev = tail;
-        }
+        newNode.prev = tail;
         tail = newNode;
         size++;
     }
