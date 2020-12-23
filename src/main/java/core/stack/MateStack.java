@@ -28,10 +28,10 @@ public class MateStack<T> {
 
     public T pop() {
         isEmptyStack();
-        Node temp = tail;
+        Node<T> temp = tail;
         tail = tail.previousNode;
         size--;
-        return (T) temp.value;
+        return temp.value;
     }
 
     public int size() {
