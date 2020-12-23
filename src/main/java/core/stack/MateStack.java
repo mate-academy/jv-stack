@@ -10,20 +10,14 @@ public class MateStack<T> {
         private T value;
         private Node<T> previousNode;
 
-        public Node(Node previousNode, T value) {
+        private Node(Node previousNode, T value) {
             this.previousNode = previousNode;
             this.value = value;
         }
     }
 
     public void push(T value) {
-        Node newNode = new Node(null, value);
-        if (tail == null) {
-            tail = newNode;
-        } else {
-            newNode.previousNode = tail;
-            tail = newNode;
-        }
+        tail = new Node(tail, value);
         size++;
     }
 
@@ -44,7 +38,7 @@ public class MateStack<T> {
         return size;
     }
 
-    public void isEmptyStack() {
+    private void isEmptyStack() {
         if (size == 0) {
             throw new EmptyStackException();
         }
