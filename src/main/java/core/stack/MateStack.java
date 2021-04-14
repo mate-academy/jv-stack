@@ -16,7 +16,7 @@ public class MateStack<T> {
         if (size == container.length) {
             resize();
         }
-        container[++size] = value;
+        container[size++] = value;
     }
 
     private void resize() {
@@ -27,12 +27,12 @@ public class MateStack<T> {
         if (size == 0) {
             throw new EmptyStackException();
         }
-        return container[size];
+        return container[size - 1];
     }
 
     public T pop() {
         T value = peek();
-        container[size--] = null;
+        container[--size] = null;
         return value;
     }
 
