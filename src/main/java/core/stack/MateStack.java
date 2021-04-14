@@ -23,13 +23,14 @@ public class MateStack<T> {
     }
 
     public T peek() {
-        isEmptyStack();
+        if (top == null) {
+            throw new EmptyStackException();
+        }
         return top.value;
     }
 
     public T pop() {
-        isEmptyStack();
-        T oldValue = top.value;
+        T oldValue = peek();
         top = top.next;
         size--;
         return oldValue;
@@ -39,9 +40,4 @@ public class MateStack<T> {
         return size;
     }
 
-    private void isEmptyStack() {
-        if (top == null) {
-            throw new EmptyStackException();
-        }
-    }
 }
