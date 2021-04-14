@@ -6,7 +6,7 @@ public class MateStack<T> {
     private Node<T> element;
     private int size;
 
-    private class Node<T> {
+    private static class Node<T> {
         private T item;
         private Node<T> next;
 
@@ -17,11 +17,7 @@ public class MateStack<T> {
     }
 
     public void push(T value) {
-        if (size == 0) {
-            element = new Node<>(value, null);
-        } else {
-            element = new Node<>(value, element);
-        }
+        element = new Node<>(value, element);
         size++;
     }
 
@@ -32,13 +28,8 @@ public class MateStack<T> {
 
     public T pop() {
         isEmpty();
-        Node<T> removed = element;
-        final T result = removed.item;
-        if (removed.next == null) {
-            element = null;
-        } else {
-            element = removed.next;
-        }
+        final T result = element.item;
+        element = element.next;
         size--;
         return result;
     }
