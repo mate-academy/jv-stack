@@ -6,10 +6,14 @@ public class MateStack<T> {
     private int size;
     private Node<T> head;
 
-    static class Node<T> {
+    private static class Node<T> {
         private T value;
         private Node<T> next;
-        private Node<T> previous;
+
+        Node(T value, Node<T> next) {
+            this.value = value;
+            this.next = next;
+        }
 
         Node(T value) {
             this.value = value;
@@ -17,33 +21,30 @@ public class MateStack<T> {
     }
 
     public void push(T value) {
-        Node<T> newNode = new Node(value);
-        if (head != null) {
-            newNode.previous = head;
-            head.next = newNode;
-        }
-        head = newNode;
+        head = (Node<T>) new Node(value, head);
         size++;
     }
 
     public T peek() {
-        if (head != null) {
-            return head.value;
-        }
-        throw new EmptyStackException();
+        checkForHead();
+        return head.value;
     }
 
     public T pop() {
-        if (head != null) {
-            size--;
-            T deletedValue = head.value;
-            if (head.previous != null) {
-                head = head.previous;
-            }
-            head.next = null;
-            return deletedValue;
+        checkForHead();
+        size--;
+        T deletedValue = head.value;
+        if (head.next != null) {
+            head = head.next;
         }
-        throw new EmptyStackException();
+        return deletedValue;
+
+    }
+
+    private void checkForHead() {
+        if (head == null) {
+            throw new EmptyStackException();
+        }
     }
 
     public int size() {
