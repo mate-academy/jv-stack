@@ -14,7 +14,7 @@ public class MateStack<T> {
 
     public void push(T value) {
         if (size >= MAX_SIZE - 1) {
-            throw new StackOverflowError();
+            throw new RuntimeException("Stack is overflow");
         }
 
         stack[size] = value;
