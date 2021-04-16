@@ -4,41 +4,42 @@ import java.util.EmptyStackException;
 
 public class MateStack<T> {
     private static final int MAX_SIZE = 100;
-    private int top;
-    private T[] stack = (T[]) new Object[MAX_SIZE];
+    private int size;
+    private T[] stack;
 
     public MateStack() {
-        top = 0;
+        stack = (T[]) new Object[MAX_SIZE];
+        size = 0;
     }
 
     public void push(T value) {
-        if (top >= MAX_SIZE - 1) {
-            throw new EmptyStackException();
-        } else {
-            top++;
-            stack[top] = value;
+        if (size >= MAX_SIZE - 1) {
+            throw new StackOverflowError();
         }
+
+        stack[size] = value;
+        size++;
     }
 
     public T peek() {
-        if (top <= 0) {
+        if (size <= 0) {
             throw new EmptyStackException();
-        } else {
-            return stack[top];
         }
+
+        return stack[size - 1];
     }
 
     public T pop() {
-        if (top <= 0) {
+        if (size <= 0) {
             throw new EmptyStackException();
-        } else {
-            T removedValue = stack[top];
-            top--;
-            return removedValue;
         }
+
+        T removedValue = stack[size - 1];
+        size--;
+        return removedValue;
     }
 
     public int size() {
-        return top;
+        return size;
     }
 }
