@@ -6,10 +6,6 @@ public class MateStack<T> {
     private int size;
     private Node<T> topNode;
 
-    public MateStack() {
-        size = 0;
-    }
-
     private static class Node<T> {
         private T value;
         private Node<T> prevNode;
