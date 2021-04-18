@@ -3,7 +3,7 @@ package core.stack;
 import java.util.EmptyStackException;
 
 public class MateStack<T> {
-    private static final int INITIAL_CAPACITY = 8;
+    private static final int INITIAL_CAPACITY = 10;
     private static final float MULTIPLIER = 1.5f;
 
     private T[] data;
@@ -33,7 +33,7 @@ public class MateStack<T> {
             throw new EmptyStackException();
         }
         final T element = data[size - 1];
-        System.arraycopy(data, 0, data, 0, size - 1);
+        data[size - 1] = null;
         size--;
         return element;
     }
