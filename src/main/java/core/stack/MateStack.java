@@ -17,8 +17,7 @@ public class MateStack<T> {
         if (size == data.length) {
             resize();
         }
-        data[size] = value;
-        size++;
+        data[size++] = value;
     }
 
     public T peek() {
