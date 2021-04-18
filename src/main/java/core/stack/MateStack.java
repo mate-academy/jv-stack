@@ -33,8 +33,7 @@ public class MateStack<T> {
             throw new EmptyStackException();
         }
         final T element = data[size - 1];
-        data[size - 1] = null;
-        size--;
+        data[--size] = null;
         return element;
     }
 
