@@ -4,37 +4,39 @@ import java.util.EmptyStackException;
 import java.util.Objects;
 
 public class MateStack<T> {
-    private static final int INITIAL_ARRAY_SIZE = 10;
+    private static final int INITIAL_CAPACITY = 10;
     private T[] stack;
-    private int capacity;
+    private int size;
 
     public MateStack() {
-        stack = (T[]) new Object[INITIAL_ARRAY_SIZE];
+        stack = (T[]) new Object[INITIAL_CAPACITY];
     }
 
     public void push(T value) {
         checkCapacity();
         if (!contains(value)) {
-            stack[capacity++] = value;
+            stack[size++] = value;
         }
     }
 
     public T peek() {
         checkStackForEmptiness();
-        return stack[capacity - 1];
+        return stack[size - 1];
     }
 
     public T pop() {
         checkStackForEmptiness();
-        return stack[--capacity];
+        T actualElement = stack[--size];
+        stack[size] = null;
+        return actualElement;
     }
 
     public int size() {
-        return capacity;
+        return size;
     }
 
     private boolean contains(T value) {
-        for (int i = 0; i <= capacity; i++) {
+        for (int i = 0; i <= size; i++) {
             if (Objects.equals(stack[i], value)) {
                 return true;
             }
@@ -43,19 +45,19 @@ public class MateStack<T> {
     }
 
     private T[] resizeStack() {
-        T[] enlargedStack = (T[]) new Object[(capacity * 3) / 2 + 1];
-        System.arraycopy(stack, 0, enlargedStack, 0, capacity);
+        T[] enlargedStack = (T[]) new Object[(size * 3) / 2 + 1];
+        System.arraycopy(stack, 0, enlargedStack, 0, size);
         return enlargedStack;
     }
 
     private void checkStackForEmptiness() {
-        if (capacity == 0) {
+        if (size == 0) {
             throw new EmptyStackException();
         }
     }
 
     private void checkCapacity() {
-        if (capacity == stack.length) {
+        if (size == stack.length) {
             stack = resizeStack();
         }
     }
