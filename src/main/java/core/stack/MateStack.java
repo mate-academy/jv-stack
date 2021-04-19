@@ -25,7 +25,6 @@ public class MateStack<T> {
     }
 
     public T pop() {
-        checkStackIsEmpty();
         T actualElement = peek();
         stack[--size] = null;
         return actualElement;
