@@ -17,7 +17,7 @@ public class MateStack<T> {
     public void push(T value) {
         checkSize();
         Node<T> pushNode = new Node<>();
-        pushNode.setItem(value);
+        pushNode.item = value;
         elementData[size] = pushNode;
         size++;
     }
@@ -55,10 +55,6 @@ public class MateStack<T> {
 
     static class Node<T> {
         private T item;
-
-        public void setItem(T item) {
-            this.item = item;
-        }
 
         @Override
         public boolean equals(Object o) {
