@@ -20,14 +20,14 @@ public class MateStack<T> {
     }
 
     public T peek() {
-        checkStackForEmptiness();
+        checkStackIsEmpty();
         return stack[size - 1];
     }
 
     public T pop() {
-        checkStackForEmptiness();
-        T actualElement = stack[--size];
-        stack[size] = null;
+        checkStackIsEmpty();
+        T actualElement = peek();
+        stack[--size] = null;
         return actualElement;
     }
 
@@ -44,13 +44,13 @@ public class MateStack<T> {
         return false;
     }
 
-    private T[] resizeStack() {
+    private T[] resize() {
         T[] enlargedStack = (T[]) new Object[(size * 3) / 2 + 1];
         System.arraycopy(stack, 0, enlargedStack, 0, size);
         return enlargedStack;
     }
 
-    private void checkStackForEmptiness() {
+    private void checkStackIsEmpty() {
         if (size == 0) {
             throw new EmptyStackException();
         }
@@ -58,7 +58,7 @@ public class MateStack<T> {
 
     private void checkCapacity() {
         if (size == stack.length) {
-            stack = resizeStack();
+            stack = resize();
         }
     }
 }
