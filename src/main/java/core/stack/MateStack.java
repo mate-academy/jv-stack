@@ -16,14 +16,10 @@ public class MateStack<T> {
     }
 
     public void push(T value) {
-        if (topNode == null) {
-            Node<T> newNode = new Node<>(value);
-            topNode = newNode;
-            size++;
-            return;
-        }
         Node<T> newNode = new Node<>(value);
-        newNode.prevNode = topNode;
+        if (topNode != null) {
+            newNode.prevNode = topNode;
+        }
         topNode = newNode;
         size++;
     }
