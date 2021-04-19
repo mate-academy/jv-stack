@@ -1,5 +1,6 @@
 package core.stack;
 
+import java.util.Arrays;
 import java.util.EmptyStackException;
 import java.util.Objects;
 
@@ -22,30 +23,18 @@ public class MateStack<T> {
                 return;
             }
         }
-        stack[size] = value;
-        size++;
-    }
-
-    private void grow() {
-        T[] oldArray = stack;
-        stack = (T[]) new Object[(int)(stack.length * MULTIPLIER)];
-        System.arraycopy(oldArray, 0, stack, 0, oldArray.length);
+        stack[size++] = value;
     }
 
     public T peek() {
-        checkStack();
-        return stack[size - 1];
-    }
-
-    private void checkStack() {
         if (size == 0) {
             throw new EmptyStackException();
         }
+        return stack[size - 1];
     }
 
     public T pop() {
-        checkStack();
-        T value = stack[size - 1];
+        T value = peek();
         stack[size - 1] = null;
         size--;
         return value;
@@ -53,5 +42,9 @@ public class MateStack<T> {
 
     public int size() {
         return size;
+    }
+
+    private void grow() {
+        stack = Arrays.copyOf(stack, (int)(stack.length * MULTIPLIER));
     }
 }
