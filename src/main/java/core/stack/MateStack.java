@@ -13,7 +13,9 @@ public class MateStack<T> {
     }
 
     public void push(T value) {
-        resize();
+        if (array.length == size) {
+            resize();
+        }
         array[size] = value;
         size++;
     }
@@ -36,11 +38,9 @@ public class MateStack<T> {
     }
 
     private void resize() {
-        if (array.length == size) {
-            T[] newArray = (T[]) new Object[DEFAULT_CAPACITY * 3 / 2];
-            System.arraycopy(array, 0, newArray, 0, size);
-            array = newArray;
-        }
+        T[] newArray = (T[]) new Object[DEFAULT_CAPACITY * 3 / 2];
+        System.arraycopy(array, 0, newArray, 0, size);
+        array = newArray;
     }
 
     private void isStackEmpty() {
