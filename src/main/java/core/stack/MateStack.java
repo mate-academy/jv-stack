@@ -18,10 +18,10 @@ public class MateStack<T> {
 
     public T pop() {
         checkSize();
-        Node<T> node = tail;
-        tail = node.prev;
+        T value = peek();
+        tail = tail.prev;
         size--;
-        return node.item;
+        return value;
     }
 
     public int size() {
