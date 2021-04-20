@@ -19,16 +19,12 @@ public class MateStack<T> {
     }
 
     public T peek() {
-        if (empty() == true) {
-            throw new EmptyStackException();
-        }
+        empty();
         return elementData[size - 1];
     }
 
     public T pop() {
-        if (empty() == true) {
-            throw new EmptyStackException();
-        }
+        empty();
         T removedElement = peek();
         elementData[size--] = null;
         return removedElement;
@@ -39,7 +35,10 @@ public class MateStack<T> {
     }
 
     public boolean empty() {
-        return size == 0;
+        if (size == 0) {
+            throw new EmptyStackException();
+        }
+        return false;
     }
 
     private void grow() {
