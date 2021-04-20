@@ -17,7 +17,7 @@ public class MateStack<T> {
     }
 
     public T pop() {
-       checkSize();
+        checkSize();
         Node<T> node = tail;
         tail = node.prev;
         size--;
@@ -28,11 +28,12 @@ public class MateStack<T> {
         return size;
     }
 
-    private void checkSize () {
+    private void checkSize() {
         if (size == 0) {
             throw new EmptyStackException();
         }
     }
+
     private static class Node<T> {
         private final T item;
         private final Node<T> prev;
