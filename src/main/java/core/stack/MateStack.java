@@ -13,12 +13,11 @@ public class MateStack<T> {
 
     public T peek() {
         checkSize();
-        return last.element;
+        return last.value;
     }
 
     public T pop() {
-        checkSize();
-        T deletedValue = last.element;
+        T deletedValue = peek();
         last = last.previous;
         size--;
         return deletedValue;
@@ -35,12 +34,12 @@ public class MateStack<T> {
     }
 
     private static class Node<T> {
-        private T element;
+        private T value;
         private Node<T> previous;
 
-        public Node(T element, Node<T> next) {
-            this.element = element;
-            this.previous = next;
+        public Node(T value, Node<T> previous) {
+            this.value = value;
+            this.previous = previous;
         }
     }
 }
