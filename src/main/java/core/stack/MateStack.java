@@ -39,6 +39,7 @@ public class MateStack<T> {
             throw new EmptyStackException();
         }
     }
+
     public int size() {
         return size;
     }
