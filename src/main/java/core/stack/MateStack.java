@@ -4,8 +4,12 @@ import java.util.EmptyStackException;
 
 public class MateStack<T> {
     private static final int DEFAULT_STACK_SIZE = 10;
-    private T[] stackArray = (T[]) new Object[DEFAULT_STACK_SIZE];
+    private T[] stackArray;
     private int size;
+
+    public MateStack() {
+        stackArray = (T[]) new Object[DEFAULT_STACK_SIZE];
+    }
 
     public void push(T value) {
         if (size == stackArray.length) {
@@ -37,8 +41,7 @@ public class MateStack<T> {
     }
 
     private void resize() {
-        int newSize = stackArray.length * 3 / 2 + 1;
-        T[] newArray = (T[]) new Object[newSize];
+        T[] newArray = (T[]) new Object[stackArray.length * 3 / 2 + 1];
         System.arraycopy(stackArray, 0, newArray, 0, stackArray.length);
         stackArray = newArray;
     }
