@@ -1,5 +1,6 @@
 package core.stack;
 
+import java.util.Arrays;
 import java.util.EmptyStackException;
 
 public class MateStack<T> {
@@ -18,12 +19,15 @@ public class MateStack<T> {
         array[size++] = value;
     }
 
+    private void grow() {
+        array = Arrays.copyOf(array, array.length + (array.length / 2));
+    }
+
     public T peek() {
-        int len = size();
-        if (len == 0) {
+        if (size == 0) {
             throw new EmptyStackException();
         }
-        return (T) array[len - 1];
+        return (T) array[size - 1];
     }
 
     public T pop() {
@@ -34,11 +38,5 @@ public class MateStack<T> {
 
     public int size() {
         return size;
-    }
-
-    private T[] grow() {
-        T[] grewArray = (T[]) new Object[size + (size / 2)];
-        System.arraycopy(array, 0, grewArray, 0, size);
-        return grewArray;
     }
 }
