@@ -14,10 +14,6 @@ public class MateStack<T> {
             this.value = value;
             this.next = next;
         }
-
-        Node(T value) {
-            this.value = value;
-        }
     }
 
     public void push(T value) {
@@ -34,11 +30,8 @@ public class MateStack<T> {
         checkForHead();
         size--;
         T deletedValue = head.value;
-        if (head.next != null) {
-            head = head.next;
-        }
+        head = head.next;
         return deletedValue;
-
     }
 
     private void checkForHead() {
