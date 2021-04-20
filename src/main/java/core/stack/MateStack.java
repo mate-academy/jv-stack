@@ -4,9 +4,9 @@ import java.util.EmptyStackException;
 
 public class MateStack<T> {
     private static final int ARRSIZE = 10;
+    private static final int CAPASITY = 3 / 2;
     private int size;
     private T[] array;
-    private int elementCount;
 
     public MateStack() {
         array = (T[]) new Object[ARRSIZE];
@@ -17,7 +17,6 @@ public class MateStack<T> {
             array = grow();
         }
         array[size++] = value;
-        elementCount++;
     }
 
     public T peek() {
@@ -33,7 +32,6 @@ public class MateStack<T> {
         int length = size();
         obj = peek();
         removeElementAt(length - 1);
-        size--;
         return obj;
     }
 
@@ -42,7 +40,7 @@ public class MateStack<T> {
     }
 
     private int newCapacity() {
-        return (size * 3) / 2;
+        return size * CAPASITY;
     }
 
     private T[] grow() {
@@ -52,24 +50,24 @@ public class MateStack<T> {
     }
 
     private T elementAt(int index) {
-        if (index >= elementCount) {
-            throw new ArrayIndexOutOfBoundsException(index + " >= " + elementCount);
+        if (index >= size) {
+            throw new ArrayIndexOutOfBoundsException(index + " >= " + size);
         }
         return array[index];
     }
 
     private void removeElementAt(int index) {
-        if (index >= elementCount) {
-            throw new ArrayIndexOutOfBoundsException(index + " >= " + elementCount);
+        if (index >= size) {
+            throw new ArrayIndexOutOfBoundsException(index + " >= " + size);
         } else if (index < 0) {
             throw new ArrayIndexOutOfBoundsException("Your index: " + index
                     + ". Must be more then 0");
         }
-        int elementMoved = elementCount - index - 1;
+        int elementMoved = size - index - 1;
         if (elementMoved > 0) {
             System.arraycopy(array, index + 1, array, index, elementMoved);
         }
-        elementCount--;
-        array[elementCount] = null;
+        size--;
+        array[size] = null;
     }
 }
