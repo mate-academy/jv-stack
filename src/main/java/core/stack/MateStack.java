@@ -5,42 +5,42 @@ import java.util.EmptyStackException;
 public class MateStack<T> {
     private static final int INITIAL_CAPACITY = 10;
     private static final int INCREASES_INDEX = 2;
-    private T[] elementData;
+    private T[] arrayOfObjects;
     private int size;
 
     public MateStack() {
         size = 0;
-        elementData = (T[]) new Object[INITIAL_CAPACITY];
+        arrayOfObjects = (T[]) new Object[INITIAL_CAPACITY];
     }
 
     public void push(T value) {
-        checkSize();
-        elementData[size] = value;
+        increaseCapacity();
+        arrayOfObjects[size] = value;
         size++;
     }
 
-    private void checkSize() {
-        if (size == elementData.length) {
+    private void increaseCapacity() {
+        if (size == arrayOfObjects.length) {
             T[] tempArray = (T[]) new Object[size + size / INCREASES_INDEX];
-            System.arraycopy(elementData, 0, tempArray, 0, elementData.length);
-            elementData = tempArray;
+            System.arraycopy(arrayOfObjects, 0, tempArray, 0, arrayOfObjects.length);
+            arrayOfObjects = tempArray;
         }
     }
 
     public T peek() {
-        checkEmptyArray();
-        return elementData[size - 1];
+        checkEmptyStack();
+        return arrayOfObjects[size - 1];
     }
 
     public T pop() {
-        checkEmptyArray();
-        T nodeToRemove = elementData[size - 1];
-        elementData[size - 1] = null;
+        checkEmptyStack();
+        T elementForRemove = arrayOfObjects[size - 1];
+        arrayOfObjects[size - 1] = null;
         size--;
-        return nodeToRemove;
+        return elementForRemove;
     }
 
-    private void checkEmptyArray() {
+    private void checkEmptyStack() {
         if (size == 0) {
             throw new EmptyStackException();
         }
