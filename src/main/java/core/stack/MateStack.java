@@ -3,19 +3,12 @@ package core.stack;
 import java.util.EmptyStackException;
 
 public class MateStack<T> {
-    private Node<T> head;
     private Node<T> tail;
     private int size;
 
     public void push(T value) {
-        Node<T> newElement = new Node<>(value, null);
-        if (size == 0) {
-            tail = newElement;
-            head = newElement;
-        } else {
-            tail.next = newElement;
-            tail = newElement;
-        }
+        Node<T> newElement = new Node<>(value, tail);
+        tail = newElement;
         size++;
     }
 
@@ -27,8 +20,8 @@ public class MateStack<T> {
     public T pop() {
         checkException();
         Node<T> oldElement = tail;
-        tail = findElement();
-        tail.next = null;
+        tail = tail.next;
+        size--;
         return oldElement.item;
     }
 
@@ -44,15 +37,6 @@ public class MateStack<T> {
             this.item = item;
             this.next = next;
         }
-    }
-
-    private Node<T> findElement() {
-        Node<T> element = head;
-        for (int i = 0; i < size - 2; i++) {
-            element = element.next;
-        }
-        size--;
-        return element;
     }
 
     private void checkException() {
