@@ -21,16 +21,12 @@ public class MateStack<T> {
     }
 
     public T peek() {
-        if (size == 0) {
-            throw new EmptyStackException();
-        }
+        checkEmptyStack();
         return stackArray[size - 1];
     }
 
     public T pop() {
-        if (size == 0) {
-            throw new EmptyStackException();
-        }
+        checkEmptyStack();
         T returnValue = stackArray[size - 1];
         stackArray[size - 1] = null;
         size--;
@@ -45,5 +41,11 @@ public class MateStack<T> {
         T[] data = stackArray;
         stackArray = (T[]) new Object[size * 3 / 2];
         System.arraycopy(data, 0, stackArray, 0, size);
+    }
+
+    private void checkEmptyStack() {
+        if (size == 0) {
+            throw new EmptyStackException();
+        }
     }
 }
