@@ -9,7 +9,6 @@ public class MateStack<T> {
 
     public MateStack() {
         stackArray = (T[]) new Object[DEFAULT_CAPACITY];
-        size = 0;
     }
 
     public void push(T value) {
