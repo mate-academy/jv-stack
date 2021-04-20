@@ -24,14 +24,14 @@ public class MateStack<T> {
         return element;
     }
 
+    public int size() {
+        return size;
+    }
+
     private void checkSize() {
         if (size == 0) {
             throw new EmptyStackException();
         }
-    }
-
-    public int size() {
-        return size;
     }
 
     private static class Node<T> {
