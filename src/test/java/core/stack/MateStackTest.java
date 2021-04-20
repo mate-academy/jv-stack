@@ -101,7 +101,6 @@ public class MateStackTest {
         assertEquals(0, stack.size());
     }
 
-
     @Test(expected = EmptyStackException.class)
     public void pop_emptyStack() {
         assertEquals(0, stack.size());
