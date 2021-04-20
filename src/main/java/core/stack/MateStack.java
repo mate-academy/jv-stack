@@ -10,9 +10,9 @@ public class MateStack<T> {
         private T value;
         private Node<T> prev;
 
-        public Node(T value, Node<T> next) {
+        public Node(T value, Node<T> prev) {
             this.value = value;
-            this.prev = next;
+            this.prev = prev;
         }
     }
 
