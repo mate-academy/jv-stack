@@ -6,9 +6,6 @@ public class MateStack<T> {
     private int size;
     private Node<T> top;
 
-    public MateStack() {
-    }
-
     private static class Node<T> {
         private final T value;
         private final Node<T> next;
@@ -32,13 +29,10 @@ public class MateStack<T> {
     }
 
     public T pop() {
-        if (size == 0) {
-            throw new EmptyStackException();
-        }
-        Node<T> removedNode = top;
+        T removedValue = peek();
         top = top.next;
         size--;
-        return removedNode.value;
+        return removedValue;
     }
 
     public int size() {
