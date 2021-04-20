@@ -4,7 +4,7 @@ import java.util.EmptyStackException;
 
 public class MateStack<T> {
     private static final int ARRSIZE = 10;
-    private static final int CAPASITY = 3 / 2;
+    private static final int CAPACITY = 3 / 2;
     private int size;
     private T[] array;
 
@@ -20,18 +20,16 @@ public class MateStack<T> {
     }
 
     public T peek() {
-        int length = size();
-        if (length == 0) {
+        if (size == 0) {
             throw new EmptyStackException();
         }
-        return elementAt(length - 1);
+        return elementAt(size - 1);
     }
 
     public T pop() {
         T obj;
-        int length = size();
         obj = peek();
-        removeElementAt(length - 1);
+        removeElementAt(size - 1);
         return obj;
     }
 
@@ -40,7 +38,7 @@ public class MateStack<T> {
     }
 
     private int newCapacity() {
-        return size * CAPASITY;
+        return size * CAPACITY;
     }
 
     private T[] grow() {
