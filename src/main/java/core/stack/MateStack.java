@@ -10,35 +10,37 @@ public class MateStack<T> {
         private T value;
         private Node<T> prevNode;
 
-        public Node(T value) {
+        public Node(T value, Node<T> prevNode) {
             this.value = value;
+            this.prevNode = prevNode;
         }
     }
 
     public void push(T value) {
-        Node<T> newNode = new Node<>(value);
-        if (topNode != null) {
-            newNode.prevNode = topNode;
-        }
+        Node<T> newNode = new Node<>(value, topNode);
         topNode = newNode;
         size++;
     }
 
     public T peek() {
-        if (size == 0) {
+        if (isEmpty()) {
             throw new EmptyStackException();
         }
         return topNode.value;
     }
 
     public T pop() {
-        if (topNode == null) {
+        if (isEmpty()) {
             throw new EmptyStackException();
         }
         T tempvalue = topNode.value;
         topNode = topNode.prevNode;
         size--;
         return tempvalue;
+    }
+
+    private boolean isEmpty() {
+        return size == 0;
     }
 
     public int size() {
