@@ -4,37 +4,35 @@ import java.util.EmptyStackException;
 
 public class MateStack<T> {
     private static final int INITIAL_CAPACITY = 10;
+    private static final float MULTIPLIER = 1.5F;
     private T[] elements;
     private int size;
-    private int topOfStack;
 
     public MateStack() {
         this.elements = (T[]) new Object[INITIAL_CAPACITY];
-        this.size = 0;
-        this.topOfStack = -1;
     }
 
     public void push(T value) {
         if (size == elements.length) {
             extendArray();
         }
-        elements[++topOfStack] = value;
-        size++;
+        elements[size++] = value;
     }
 
     public T peek() {
-        if (topOfStack < 0) {
+        if (size == 0) {
             throw new EmptyStackException();
         }
-        return elements[topOfStack];
+        return elements[size - 1];
     }
 
     public T pop() {
-        if (topOfStack < 0) {
+        if (size == 0) {
             throw new EmptyStackException();
         }
-        size--;
-        return elements[topOfStack--];
+        T current = elements[--size];
+        elements[size] = null;
+        return current;
     }
 
     public int size() {
@@ -42,7 +40,7 @@ public class MateStack<T> {
     }
 
     private void extendArray() {
-        int newCapacity = Math.round((size * 3) / 2 + 1);
+        int newCapacity = (int) (elements.length * MULTIPLIER);
         T[] extendedArray = (T[]) new Object[newCapacity];
         System.arraycopy(elements, 0, extendedArray, 0, size);
         elements = extendedArray;
