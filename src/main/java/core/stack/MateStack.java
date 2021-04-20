@@ -1,7 +1,6 @@
 package core.stack;
 
 import java.util.EmptyStackException;
-import java.util.Objects;
 
 public class MateStack<T> {
     private static final int INITIAL_CAPACITY = 10;
@@ -14,9 +13,7 @@ public class MateStack<T> {
 
     public void push(T value) {
         checkCapacity();
-        if (!contains(value)) {
-            stack[size++] = value;
-        }
+        stack[size++] = value;
     }
 
     public T peek() {
@@ -32,15 +29,6 @@ public class MateStack<T> {
 
     public int size() {
         return size;
-    }
-
-    private boolean contains(T value) {
-        for (int i = 0; i <= size; i++) {
-            if (Objects.equals(stack[i], value)) {
-                return true;
-            }
-        }
-        return false;
     }
 
     private T[] resize() {
