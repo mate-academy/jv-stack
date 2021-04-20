@@ -22,22 +22,23 @@ public class MateStack<T> {
     }
 
     public T peek() {
-        if (node == null) {
-            throw new EmptyStackException();
-        }
+        checkForNull();
         return node.value;
     }
 
     public T pop() {
-        if (node == null) {
-            throw new EmptyStackException();
-        }
+        checkForNull();
         Node<T> temp = node;
         node = node.prev;
         size--;
         return temp.value;
     }
 
+    private void checkForNull() {
+        if (node == null) {
+            throw new EmptyStackException();
+        }
+    }
     public int size() {
         return size;
     }
