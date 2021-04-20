@@ -6,16 +6,6 @@ public class MateStack<T> {
     private Node<T> top;
     private int size;
 
-    private static class Node<T> {
-        private final T value;
-        private final Node<T> previous;
-
-        public Node(T value, Node<T> previous) {
-            this.value = value;
-            this.previous = previous;
-        }
-    }
-
     public void push(T value) {
         top = new Node<>(value, top);
         size++;
@@ -37,5 +27,15 @@ public class MateStack<T> {
 
     public int size() {
         return size;
+    }
+
+    private static class Node<T> {
+        private final T value;
+        private final Node<T> previous;
+
+        public Node(T value, Node<T> previous) {
+            this.value = value;
+            this.previous = previous;
+        }
     }
 }
