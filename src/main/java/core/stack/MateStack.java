@@ -2,7 +2,6 @@ package core.stack;
 
 import java.util.Arrays;
 import java.util.EmptyStackException;
-import java.util.Objects;
 
 public class MateStack<T> {
     private static final int DEFAULT_CAPACITY = 10;
@@ -17,11 +16,6 @@ public class MateStack<T> {
     public void push(T value) {
         if (size == stack.length) {
             grow();
-        }
-        for (int i = 0; i < size; i++) {
-            if (Objects.equals(stack[i], (value))) {
-                return;
-            }
         }
         stack[size++] = value;
     }
