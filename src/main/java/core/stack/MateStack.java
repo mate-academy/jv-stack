@@ -8,11 +8,11 @@ public class MateStack<T> {
 
     private static class Node<T> {
         private T value;
-        private Node<T> next;
+        private Node<T> prev;
 
         public Node(T value, Node<T> next) {
             this.value = value;
-            this.next = next;
+            this.prev = next;
         }
     }
 
@@ -29,7 +29,7 @@ public class MateStack<T> {
     public T pop() {
         checkSize();
         final T result = head.value;
-        head = head.next;
+        head = head.prev;
         size--;
         return result;
     }
