@@ -17,14 +17,7 @@ public class MateStack<T> {
     }
 
     public void push(T value) {
-        if (first == null) {
-            first = new Node<>(value, null);
-            size++;
-            return;
-        }
-        Node<T> newNode = new Node<>(value, null);
-        newNode.next = first;
-        first = newNode;
+        first = new Node<>(value, first);
         size++;
     }
 
