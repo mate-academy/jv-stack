@@ -7,30 +7,18 @@ public class MateStack<T> {
     private int size;
 
     public static class Node<T> {
-        private Node<T> prev;
+        private Node<T> next;
         private T value;
 
-        public Node() {
-        }
-
-        public Node(T value, Node prev) {
-            this.prev = prev;
+        public Node(T value, Node next) {
+            this.next = next;
             this.value = value;
         }
     }
 
+
     public void push(T value) {
-        if (size == 0) {
-            Node<T> node = top;
-            top = new Node<>();
-            top.value = value;
-            top.prev = node;
-            size++;
-            return;
-        }
-        Node<T> newNode = new Node<>();
-        newNode.value = value;
-        newNode.prev = top;
+        Node<T> newNode = new Node<>(value,top);
         top = newNode;
         size++;
     }
@@ -42,9 +30,8 @@ public class MateStack<T> {
 
     public T pop() {
         checkEmpty();
-        Node<T> currentNodeValue = new Node<>();
-        currentNodeValue.value = top.value;
-        top = top.prev;
+        Node<T> currentNodeValue = top;
+        top = top.next;
         size--;
         return currentNodeValue.value;
     }
