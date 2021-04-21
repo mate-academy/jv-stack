@@ -7,22 +7,16 @@ public class MateStack<T> {
     private int size;
 
     public void push(T value) {
-        Node<T> node;
-        if (size == 0) {
-            node = new Node<>(value, null);
-        } else {
-            node = new Node<>(value, top);
-        }
-        top = node;
+        top = new Node<>(value, top);;
         size++;
     }
 
-    public T peek() throws EmptyStackException {
+    public T peek() {
         isSizeValid();
         return top.value;
     }
 
-    public T pop() throws EmptyStackException {
+    public T pop() {
         isSizeValid();
         T value = top.value;
         top = top.prev;
@@ -34,7 +28,7 @@ public class MateStack<T> {
         return size;
     }
 
-    private void isSizeValid() throws EmptyStackException {
+    private void isSizeValid() {
         if (size <= 0) {
             throw new EmptyStackException();
         }
