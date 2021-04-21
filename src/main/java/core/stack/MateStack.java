@@ -10,8 +10,7 @@ public class MateStack<T> {
         if (head == null) {
             head = new Node<>(value, null);
         }
-        Node<T> oldHead = head;
-        head = new Node<>(value, oldHead);
+        head = new Node<>(value, head);
         size++;
     }
 
@@ -23,10 +22,7 @@ public class MateStack<T> {
     }
 
     public T pop() {
-        if (size == 0) {
-            throw new EmptyStackException();
-        }
-        T headValue = head.elementValue;
+        T headValue = peek();
         head = head.next;
         size--;
         return headValue;
