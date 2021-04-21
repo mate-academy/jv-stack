@@ -34,7 +34,7 @@ public class MateStack<T> {
         return size;
     }
 
-    private void isSizeValid() {
+    private void isSizeValid() throws EmptyStackException {
         if (size <= 0) {
             throw new EmptyStackException();
         }
