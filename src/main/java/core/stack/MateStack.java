@@ -16,7 +16,6 @@ public class MateStack<T> {
         }
     }
 
-
     public void push(T value) {
         Node<T> newNode = new Node<>(value,top);
         top = newNode;
