@@ -41,7 +41,7 @@ public class MateStack<T> {
     }
 
     private void resize() {
-        T[] newArray = (T[]) new Object[stackArray.length * 3 / 2 + 1];
+        T[] newArray = (T[]) new Object[stackArray.length * 3 / 2];
         System.arraycopy(stackArray, 0, newArray, 0, stackArray.length);
         stackArray = newArray;
     }
