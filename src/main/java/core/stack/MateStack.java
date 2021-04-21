@@ -4,8 +4,8 @@ import java.util.Arrays;
 import java.util.EmptyStackException;
 
 public class MateStack<T> {
-    public static final int DEFAULT_CAPACITY = 10;
-    public static final double MULTIPLIER = 1.5;
+    private static final int DEFAULT_CAPACITY = 10;
+    private static final double MULTIPLIER = 1.5;
     private T[] stack;
     private int size;
 
