@@ -20,16 +20,12 @@ public class MateStack<T> {
     }
 
     public T peek() {
-        if (size == 0) {
-            throw new EmptyStackException();
-        }
+        throwEmptyStackException();
         return elements[size - 1];
     }
 
     public T pop() {
-        if (size == 0) {
-            throw new EmptyStackException();
-        }
+        throwEmptyStackException();
         T current = elements[--size];
         elements[size] = null;
         return current;
@@ -44,5 +40,11 @@ public class MateStack<T> {
         T[] extendedArray = (T[]) new Object[newCapacity];
         System.arraycopy(elements, 0, extendedArray, 0, size);
         elements = extendedArray;
+    }
+
+    private void throwEmptyStackException() {
+        if (size == 0) {
+            throw new EmptyStackException();
+        }
     }
 }
