@@ -3,13 +3,13 @@ package core.stack;
 import java.util.EmptyStackException;
 
 public class MateStack<T> {
-    private static final int ARRSIZE = 10;
-    private static final int CAPACITY = 3 / 2;
+    private static final int ARR_SIZE = 10;
+    private static final int SIZE_MULTIPLIER = 3 / 2;
     private int size;
     private T[] array;
 
     public MateStack() {
-        array = (T[]) new Object[ARRSIZE];
+        array = (T[]) new Object[ARR_SIZE];
     }
 
     public void push(T value) {
@@ -23,14 +23,13 @@ public class MateStack<T> {
         if (size == 0) {
             throw new EmptyStackException();
         }
-        return elementAt(size - 1);
+        return array[size - 1];
     }
 
     public T pop() {
-        T obj;
-        obj = peek();
-        removeElementAt(size - 1);
-        return obj;
+        T oldValue = peek();
+        array[--size] = null;
+        return oldValue;
     }
 
     public int size() {
@@ -38,34 +37,12 @@ public class MateStack<T> {
     }
 
     private int newCapacity() {
-        return size * CAPACITY;
+        return size * SIZE_MULTIPLIER;
     }
 
     private T[] grow() {
-        T[] growArray = (T[]) new Object[newCapacity()];
-        System.arraycopy(array, 0, growArray, 0, size);
-        return growArray;
-    }
-
-    private T elementAt(int index) {
-        if (index >= size) {
-            throw new ArrayIndexOutOfBoundsException(index + " >= " + size);
-        }
-        return array[index];
-    }
-
-    private void removeElementAt(int index) {
-        if (index >= size) {
-            throw new ArrayIndexOutOfBoundsException(index + " >= " + size);
-        } else if (index < 0) {
-            throw new ArrayIndexOutOfBoundsException("Your index: " + index
-                    + ". Must be more then 0");
-        }
-        int elementMoved = size - index - 1;
-        if (elementMoved > 0) {
-            System.arraycopy(array, index + 1, array, index, elementMoved);
-        }
-        size--;
-        array[size] = null;
+        T[] grownArray = (T[]) new Object[newCapacity()];
+        System.arraycopy(array, 0, grownArray, 0, size);
+        return grownArray;
     }
 }
