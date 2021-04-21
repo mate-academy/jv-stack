@@ -32,7 +32,7 @@ public class MateStack<T> {
 
     public T pop() {
         T object = peek();
-        size--;
+        array[--size] = null;
         return object;
     }
 
