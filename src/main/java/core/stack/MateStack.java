@@ -1,4 +1,5 @@
 package core.stack;
+
 import  java.util.EmptyStackException;
 
 public class MateStack<T> {
@@ -17,10 +18,10 @@ public class MateStack<T> {
 
     public T pop() {
         checkSize();
-        T popedValue = top.value;
+        T removedValue = top.value;
         top = top.next;
         size--;
-        return popedValue;
+        return removedValue;
     }
 
     public int size() {
