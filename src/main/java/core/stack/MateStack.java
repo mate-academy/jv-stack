@@ -3,7 +3,7 @@ package core.stack;
 import java.util.EmptyStackException;
 
 public class MateStack<T> {
-    private Node<T> first;
+    private Node<T> top;
     private int size;
 
     private static class Node<T> {
@@ -17,20 +17,20 @@ public class MateStack<T> {
     }
 
     public void push(T value) {
-        first = new Node<>(value, first);
+        top = new Node<>(value, top);
         size++;
     }
 
     public T peek() {
         if (size != 0) {
-            return first.value;
+            return top.value;
         }
         throw new EmptyStackException();
     }
 
     public T pop() {
         T removedElement = peek();
-        deleteElement();
+        top = top.next;
         size--;
         return removedElement;
     }
@@ -39,7 +39,4 @@ public class MateStack<T> {
         return size;
     }
 
-    private void deleteElement() {
-        first = first.next;
-    }
 }
