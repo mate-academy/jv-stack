@@ -1,14 +1,14 @@
 package core.stack;
 
-import  java.util.EmptyStackException;
+import java.util.EmptyStackException;
 
 public class MateStack<T> {
     private int size;
     private Node<T> top;
 
     public void push(T value) {
-      top = new Node<>(value,top);
-      size++;
+        top = new Node<>(value,top);
+        size++;
     }
 
     public T peek() {
@@ -28,7 +28,7 @@ public class MateStack<T> {
         return size;
     }
 
-    private static  class Node<T> {
+    private static class Node<T> {
         private T value;
         private Node<T> next;
 
