@@ -7,7 +7,6 @@ public class MateStack<T> {
     private static final double SIZE_MULTIPLICATION = 1.5;
     private int size;
     private T[] array;
-    private int index;
 
     public MateStack() {
         array = (T[]) new Object[DEFAULT_CAPACITY];
@@ -23,15 +22,13 @@ public class MateStack<T> {
 
     public T peek() {
         checkEmpty();
-        index = size - 1;
-        return array[index];
+        return array[size - 1];
     }
 
     public T pop() {
         checkEmpty();
-        index = size - 1;
-        T returnElement = array[index];
-        array[index] = null;
+        T returnElement = array[size - 1];
+        array[size - 1] = null;
         size--;
         return returnElement;
     }
@@ -46,10 +43,9 @@ public class MateStack<T> {
         array = newArray;
     }
 
-    public boolean checkEmpty() {
+    public void checkEmpty() {
         if (size == 0) {
             throw new EmptyStackException();
         }
-        return false;
     }
 }
