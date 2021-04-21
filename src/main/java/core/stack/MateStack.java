@@ -15,18 +15,18 @@ public class MateStack<T> {
         if (size == elements.length) {
             increaseCapacity();
         }
-        elements[++size] = value;
+        elements[size++] = value;
     }
 
     public T peek() {
-        checkNull();
-        return elements[size];
+        isEmpty();
+        return elements[size - 1];
     }
 
     public T pop() {
-        checkNull();
+        isEmpty();
         T current = peek();
-        elements[size--] = null;
+        elements[--size] = null;
         return current;
     }
 
@@ -34,7 +34,7 @@ public class MateStack<T> {
         return size;
     }
 
-    private void checkNull() {
+    private void isEmpty() {
         if (size == 0) {
             throw new EmptyStackException();
         }
