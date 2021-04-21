@@ -25,7 +25,9 @@ public class MateStack<T> {
 
     public T pop() {
         checkNull();
-        return elements[size--];
+        T current = peek();
+        elements[size--] = null;
+        return current;
     }
 
     public int size() {
