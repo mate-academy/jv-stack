@@ -17,7 +17,7 @@ public class MateStack<T> {
     }
 
     public void push(T value) {
-        head = new Node(value, head);
+        head = new Node<T>(value, head);
         size++;
     }
 
