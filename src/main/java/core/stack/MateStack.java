@@ -6,7 +6,7 @@ public class MateStack<T> {
     private Node<T> top;
     private int size;
 
-    public static class Node<T> {
+    private static class Node<T> {
         private Node<T> next;
         private T value;
 
@@ -17,7 +17,7 @@ public class MateStack<T> {
     }
 
     public void push(T value) {
-        Node<T> newNode = new Node<>(value,top);
+        Node<T> newNode = new Node<>(value, top);
         top = newNode;
         size++;
     }
@@ -36,7 +36,7 @@ public class MateStack<T> {
     }
 
     public int size() {
-        return (size == 0) ? 0 : size;
+        return size;
     }
 
     private void checkEmpty() {
