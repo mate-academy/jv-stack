@@ -3,23 +3,23 @@ package core.stack;
 import java.util.EmptyStackException;
 
 public class MateStack<T> {
-    private Node<T> last;
+    private Node<T> top;
     private int size;
 
     public void push(T value) {
-        last = new Node<>(value, last);
+        top = new Node<>(value, top);
         size++;
     }
 
     public T peek() {
         checkSize();
-        return last.item;
+        return top.item;
     }
 
     public T pop() {
         checkSize();
-        final T result = last.item;
-        last = last.previous;
+        final T result = top.item;
+        top = top.previous;
         size--;
         return result;
     }
