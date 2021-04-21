@@ -12,16 +12,12 @@ public class MateStack<T> {
     }
 
     public T peek() {
-        if (current == null) {
-            throw new EmptyStackException();
-        }
+        checkForNull();
         return current.value;
     }
 
     public T pop() {
-        if (current == null) {
-            throw new EmptyStackException();
-        }
+        checkForNull();
         Node<T> deletedValue = current;
         current = current.prev;
         size--;
@@ -30,6 +26,12 @@ public class MateStack<T> {
 
     public int size() {
         return size;
+    }
+
+    private void checkForNull() {
+        if (current == null) {
+            throw new EmptyStackException();
+        }
     }
 
     private static class Node<T> {
