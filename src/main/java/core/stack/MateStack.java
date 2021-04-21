@@ -28,7 +28,7 @@ public class MateStack<T> {
 
     public T pop() {
         checkSize();
-        T poppedValue = head.value;
+        T poppedValue = peek();
         head = head.next;
         size--;
         return poppedValue;
