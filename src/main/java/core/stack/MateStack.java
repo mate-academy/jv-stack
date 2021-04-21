@@ -1,34 +1,35 @@
 package core.stack;
 
+import java.util.Arrays;
 import java.util.EmptyStackException;
 
 public class MateStack<T> {
-    public static final int LENGTH = 10;
+    public static final int DEFAULT_CAPACITY = 10;
     public static final double MULTIPLIER = 1.5;
-    private T[] array;
+    private T[] stack;
     private int size;
 
     public MateStack() {
-        array = (T[]) new Object[LENGTH];
+        stack = (T[]) new Object[DEFAULT_CAPACITY];
     }
 
     public void push(T value) {
-        if (size == array.length) {
+        if (size == stack.length) {
             resize();
         }
-        array[size++] = value;
+        stack[size++] = value;
     }
 
     public T peek() {
         if (size == 0) {
             throw new EmptyStackException();
         }
-        return array[size - 1];
+        return stack[size - 1];
     }
 
     public T pop() {
         T request = peek();
-        array[--size] = null;
+        stack[--size] = null;
         return request;
     }
 
@@ -37,8 +38,6 @@ public class MateStack<T> {
     }
 
     private void resize() {
-        T[] array = (T[]) new Object[(int) (size * MULTIPLIER)];
-        System.arraycopy(this.array, 0, array, 0, size);
-        this.array = array;
+        stack = Arrays.copyOf(stack, (int)(stack.length * MULTIPLIER));
     }
 }
