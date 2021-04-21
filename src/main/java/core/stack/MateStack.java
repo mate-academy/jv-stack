@@ -6,16 +6,6 @@ public class MateStack<T> {
     private int size;
     private Node<T> head;
 
-    private static class Node<T> {
-        private T value;
-        private Node<T> prev;
-
-        public Node(T value, Node<T> prev) {
-            this.value = value;
-            this.prev = prev;
-        }
-    }
-
     public void push(T value) {
         head = new Node<>(value, head);
         size++;
@@ -41,6 +31,16 @@ public class MateStack<T> {
     private void checkSize() {
         if (size == 0) {
             throw new EmptyStackException();
+        }
+    }
+
+    private static class Node<T> {
+        private T value;
+        private Node<T> prev;
+
+        public Node(T value, Node<T> prev) {
+            this.value = value;
+            this.prev = prev;
         }
     }
 }
