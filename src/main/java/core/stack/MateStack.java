@@ -17,9 +17,7 @@ public class MateStack<T> {
         if (array.length == size) {
             grow();
         }
-        ++size;
-        array[size] = value;
-
+        array[++size] = value;
     }
 
     private void grow() {
@@ -30,16 +28,12 @@ public class MateStack<T> {
     }
 
     public T peek() {
-        if (size == 0) {
-            throw new EmptyStackException();
-        }
+        emptyStackExceptionMethod();
         return array[size];
     }
 
     public T pop() {
-        if (size == 0) {
-            throw new EmptyStackException();
-        }
+        emptyStackExceptionMethod();
         T returnElement = array[size];
         array[size] = null;
         size--;
@@ -48,5 +42,11 @@ public class MateStack<T> {
 
     public int size() {
         return size;
+    }
+
+    private void emptyStackExceptionMethod() {
+        if (size == 0) {
+            throw new EmptyStackException();
+        }
     }
 }
