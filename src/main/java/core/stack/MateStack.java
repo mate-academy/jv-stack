@@ -9,10 +9,10 @@ public class MateStack<T> {
     private int capacity;
 
     public MateStack() {
-        final int default_capacity = 10;
-        stack = (T[]) new Object[default_capacity];
+        int defaultCapacity = 10;
+        stack = (T[]) new Object[defaultCapacity];
         size = 0;
-        capacity = default_capacity;
+        capacity = defaultCapacity;
     }
 
     public void push(T value) {
