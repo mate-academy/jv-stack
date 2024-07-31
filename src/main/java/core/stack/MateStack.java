@@ -37,7 +37,7 @@ public class MateStack<T> {
         return size;
     }
 
-    private boolean isEmpty() {
+    public boolean isEmpty() {
         return top == null;
     }
 
