@@ -4,14 +4,17 @@ import java.util.EmptyStackException;
 
 public class MateStack<T> {
     private static final int INITIAL_SIZE = 10;
+    private static final double GROWTH_FACTOR = 1.5;
     private int currentSize = INITIAL_SIZE;
     private int size = 0;
-    private T[] table = (T[]) new Object[currentSize];
+    private T[] table = createArray(currentSize);
+
+    private T[] createArray(int size) {
+        return (T[]) new Object[size];
+    }
 
     public void push(T value) {
-        if (size >= currentSize) {
-            table = grow();
-        }
+        table = grow();
         table[size] = value;
         size++;
     }
@@ -38,12 +41,13 @@ public class MateStack<T> {
     }
 
     private T[] grow() {
-        double newLength = table.length * 1.5;
-        currentSize = (int) newLength;
-        T[] newTable = (T[]) new Object[currentSize];
-        for (int i = 0; i < table.length; i++) {
-            newTable[i] = table[i];
+        if (size < currentSize) {
+            return table;
         }
+        int newLength = (int) (table.length * GROWTH_FACTOR);
+        currentSize = (int) newLength;
+        T[] newTable = createArray(currentSize);
+        System.arraycopy(table,0,newTable,0,table.length);
         return newTable;
     }
 
