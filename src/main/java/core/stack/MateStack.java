@@ -14,22 +14,20 @@ public class MateStack<T> {
     }
 
     public void push(T value) {
-        table = grow();
+        if (size >= currentSize) {
+            resize();
+        }
         table[size] = value;
         size++;
     }
 
     public T peek() {
-        if (size == 0) {
-            throw new EmptyStackException();
-        }
+        checkSize();
         return table[size - 1];
     }
 
     public T pop() {
-        if (size == 0) {
-            throw new EmptyStackException();
-        }
+        checkSize();
         T value = peek();
         table[size - 1] = null;
         size--;
@@ -40,19 +38,19 @@ public class MateStack<T> {
         return size;
     }
 
-    private T[] grow() {
-        if (size < currentSize) {
-            return table;
-        }
-        int newLength = (int) (table.length * GROWTH_FACTOR);
-        currentSize = (int) newLength;
-        T[] newTable = createArray(currentSize);
-        System.arraycopy(table,0,newTable,0,table.length);
-        return newTable;
+    private void resize() {
+        currentSize = (int) (table.length * GROWTH_FACTOR);
+        System.arraycopy(table,0,table,0,currentSize);
     }
 
     public boolean isEmpty() {
         return size == 0;
+    }
+
+    private void checkSize() {
+        if (size == 0) {
+            throw new EmptyStackException();
+        }
     }
 }
 
