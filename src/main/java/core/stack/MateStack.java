@@ -4,23 +4,33 @@ import java.util.EmptyStackException;
 
 public class MateStack<T> {
     private static final int DEFAULT_CAPACITY = 10;
-    private Object[] elementData;
+    private static final int MAX_ARRAY_SIZE = Integer.MAX_VALUE;
+
+    private T[] elementData;
     private int size;
 
     public MateStack() {
-        elementData = new Object[DEFAULT_CAPACITY];
+        elementData = (T[]) new Object[DEFAULT_CAPACITY];
     }
 
     public void push(T value) {
-        ensureCapacity();
+        if (value == null) {
+            return;
+        }
+
+        resize();
         elementData[size] = value;
         size++;
     }
 
-    private void ensureCapacity() {
+    private void resize() {
         if (size == elementData.length) {
             int newCapacity = elementData.length * 2;
-            Object[] newArray = new Object[newCapacity];
+            if (newCapacity - MAX_ARRAY_SIZE > 0) {
+                newCapacity = MAX_ARRAY_SIZE;
+            }
+
+            T[] newArray = (T[]) new Object[newCapacity];
             System.arraycopy(elementData, 0, newArray, 0, elementData.length);
             elementData = newArray;
         }
@@ -31,7 +41,7 @@ public class MateStack<T> {
             throw new EmptyStackException();
         }
 
-        return (T) elementData[size - 1];
+        return elementData[size - 1];
     }
 
     private boolean isEmpty() {
