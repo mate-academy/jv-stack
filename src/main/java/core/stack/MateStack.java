@@ -5,27 +5,32 @@ import java.util.EmptyStackException;
 public class MateStack<T> {
     private static final int DEFAULT_CAPACITY = 10;
     private static final int MAX_ARRAY_SIZE = Integer.MAX_VALUE;
+    private static final int DEFAULT_MULTIPLIER = 2;
 
     private T[] elementData;
     private int size;
+    private int currentMaxSize;
 
     public MateStack() {
         elementData = (T[]) new Object[DEFAULT_CAPACITY];
+        currentMaxSize = DEFAULT_CAPACITY;
     }
 
     public void push(T value) {
         if (value == null) {
             return;
         }
+        if (size == currentMaxSize) {
+            resize();
+        }
 
-        resize();
         elementData[size] = value;
         size++;
     }
 
     private void resize() {
         if (size == elementData.length) {
-            int newCapacity = elementData.length * 2;
+            int newCapacity = currentMaxSize * DEFAULT_MULTIPLIER;
             if (newCapacity - MAX_ARRAY_SIZE > 0) {
                 newCapacity = MAX_ARRAY_SIZE;
             }
@@ -37,11 +42,14 @@ public class MateStack<T> {
     }
 
     public T peek() {
+        checkIfStackEmpty();
+        return elementData[size - 1];
+    }
+
+    private void checkIfStackEmpty() {
         if (isEmpty()) {
             throw new EmptyStackException();
         }
-
-        return elementData[size - 1];
     }
 
     private boolean isEmpty() {
@@ -49,10 +57,7 @@ public class MateStack<T> {
     }
 
     public T pop() {
-        if (isEmpty()) {
-            throw new EmptyStackException();
-        }
-
+        checkIfStackEmpty();
         size--;
         T element = (T) elementData[size];
         elementData[size] = null;
