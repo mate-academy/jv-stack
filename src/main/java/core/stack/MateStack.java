@@ -3,10 +3,10 @@ package core.stack;
 import java.util.EmptyStackException;
 
 public class MateStack<T> {
-    private T[] elements;
-    private int size;
     private static final int INITIAL_CAPACITY = 10;
     private static final double SHRINK_THRESHOLD = 0.25;
+    private T[] elements;
+    private int size;
 
     @SuppressWarnings("unchecked")
     public MateStack() {
