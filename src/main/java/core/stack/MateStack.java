@@ -50,7 +50,7 @@ public class MateStack<T> {
 
     private void ensureNotEmpty() {
         if (size == 0) {
-            throw new EmptyStackException("Stack is empty");
+            throw new EmptyStackException();
         }
     }
 
