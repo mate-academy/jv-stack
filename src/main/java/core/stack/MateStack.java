@@ -6,6 +6,7 @@ public class MateStack<T> {
     private T[] elements;
     private int size;
     private static final int INITIAL_CAPACITY = 10;
+    private static final double SHRINK_THRESHOLD = 0.25;
 
     @SuppressWarnings("unchecked")
     public MateStack() {
@@ -15,7 +16,7 @@ public class MateStack<T> {
 
     public void push(T value) {
         ensureCapacity();
-        elements[size++] = value;
+        addValue(value);
     }
 
     public T peek() {
@@ -25,9 +26,7 @@ public class MateStack<T> {
 
     public T pop() {
         ensureNotEmpty();
-        T value = elements[--size];
-        elements[size] = null;
-        return value;
+        return removeValue();
     }
 
     public int size() {
@@ -41,9 +40,17 @@ public class MateStack<T> {
         elements = newArray;
     }
 
+    private void shrink() {
+        if (size < elements.length * SHRINK_THRESHOLD && elements.length > INITIAL_CAPACITY) {
+            T[] newArray = (T[]) new Object[elements.length / 2];
+            System.arraycopy(elements, 0, newArray, 0, size);
+            elements = newArray;
+        }
+    }
+
     private void ensureNotEmpty() {
         if (size == 0) {
-            throw new EmptyStackException(); // Rzucamy wyjątek
+            throw new EmptyStackException("Stack is empty");
         }
     }
 
@@ -51,5 +58,16 @@ public class MateStack<T> {
         if (size == elements.length) {
             resize();
         }
+    }
+
+    private void addValue(T value) {
+        elements[size++] = value;
+    }
+
+    private T removeValue() {
+        T value = elements[--size];
+        elements[size] = null;
+        shrink();
+        return value;
     }
 }
