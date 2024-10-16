@@ -14,19 +14,17 @@ public class MateStack<T> {
     }
 
     public void push(T value) {
-        if (size == elements.length) {
-            resize();
-        }
+        ensureCapacity();
         elements[size++] = value;
     }
 
     public T peek() {
-        throwExeption();
+        ensureNotEmpty();
         return elements[size - 1];
     }
 
     public T pop() {
-        throwExeption();
+        ensureNotEmpty();
         T value = elements[--size];
         elements[size] = null;
         return value;
@@ -43,11 +41,15 @@ public class MateStack<T> {
         elements = newArray;
     }
 
-    private void throwExeption() {
+    private void ensureNotEmpty() {
         if (size == 0) {
-            throw new EmptyStackException();
+            throw new EmptyStackException(); // Rzucamy wyjątek
         }
     }
 
-
+    private void ensureCapacity() {
+        if (size == elements.length) {
+            resize();
+        }
+    }
 }
