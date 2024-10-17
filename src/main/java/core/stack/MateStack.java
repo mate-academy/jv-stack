@@ -5,16 +5,16 @@ import java.util.Arrays;
 import java.util.EmptyStackException;
 
 public class MateStack<T> {
-    private static final int DEAFULT_SIZE = 8;
+    private static final int DEFAULT_SIZE = 8;
     private Object[] stack;
     private int size = 0;
 
     public MateStack() {
-        stack = new Object[DEAFULT_SIZE];
+        stack = new Object[DEFAULT_SIZE];
         Arrays.fill(stack, null);
     }
 
-    public void push(T value) throws RuntimeException {
+    public void push(T value) {
         if (size < stack.length) {
             stack[size] = value;
             size++;
