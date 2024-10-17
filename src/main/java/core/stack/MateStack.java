@@ -6,8 +6,8 @@ import java.util.EmptyStackException;
 
 public class MateStack<T> {
     private static final int DEAFULT_SIZE = 8;
-    private static Object[] stack;
-    private static int size = 0;
+    private Object[] stack;
+    private int size = 0;
 
     public MateStack() {
         stack = new Object[DEAFULT_SIZE];
