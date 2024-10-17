@@ -15,7 +15,7 @@ public class MateStack<T> {
     }
 
     public void push(T value) throws RuntimeException {
-        if (size <= stack.length) {
+        if (size < stack.length) {
             stack[size] = value;
             size++;
         } else {
@@ -34,7 +34,7 @@ public class MateStack<T> {
     public T pop() {
         if (size > 0) {
             Object value = stack[size - 1];
-            stack[size] = null;
+            stack[size - 1] = null;
             size = size - 1;
             return (T) value;
         } else {
