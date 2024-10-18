@@ -6,14 +6,14 @@ public class MateStack<T> {
     private static final int DEFAULT_SIZE = 8;
     private T[] stack;
     private int size = 0;
-    private final int MULTIPLIER = 2;
+    private final int multiplier = 2;
 
     public MateStack() {
         this.stack = (T[]) new Object[DEFAULT_SIZE];
     }
 
     private void grow() {
-        T[] newArray = (T[]) new Object[stack.length * MULTIPLIER];
+        T[] newArray = (T[]) new Object[stack.length * multiplier];
         System.arraycopy(stack, 0, newArray, 0, stack.length);
         stack = newArray;
     }
