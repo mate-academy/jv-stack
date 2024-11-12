@@ -12,9 +12,9 @@ public class MateStack<T> {
     }
 
     public T peek() throws EmptyStackException {
-            if (size == 0) {
-                throw new EmptyStackException();
-            }
+        if (size == 0) {
+            throw new EmptyStackException();
+        }
         return tail.item;
     }
 
