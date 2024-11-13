@@ -3,55 +3,68 @@ package core.stack;
 import java.util.EmptyStackException;
 
 public class MateStack<T> {
-    private static int GROWTH_FACTOR;
-    private T[] stack;
+    private static final int DEFAULT_CAPACITY = 10;
+    private static final int MAX_ARRAY_SIZE = Integer.MAX_VALUE;
+    private static final int DEFAULT_MULTIPLIER = 2;
+
+    private T[] elementData;
     private int size;
-    private int capacity;
+    private int currentMaxSize;
 
     public MateStack() {
-        GROWTH_FACTOR = 2;
-        capacity = 10;
-        stack = (T[]) new Object[capacity];
-        size = 0;
-    }
-
-    public MateStack(int defaultCapacity, int growthFactor) {
-        GROWTH_FACTOR = growthFactor;
-        capacity = defaultCapacity;
-        stack = (T[]) new Object[defaultCapacity];
-        size = 0;
+        elementData = (T[]) new Object[DEFAULT_CAPACITY];
+        currentMaxSize = DEFAULT_CAPACITY;
     }
 
     public void push(T value) {
-        if (size >= capacity) {
-            grow();
+        if (value == null) {
+            return;
         }
-        stack[size] = value;
+        if (size == currentMaxSize) {
+            resize();
+        }
+
+        elementData[size] = value;
         size++;
     }
 
+    private void resize() {
+        if (size == elementData.length) {
+            int newCapacity = currentMaxSize * DEFAULT_MULTIPLIER;
+            if (newCapacity - MAX_ARRAY_SIZE > 0) {
+                newCapacity = MAX_ARRAY_SIZE;
+            }
+
+            T[] newArray = (T[]) new Object[newCapacity];
+            System.arraycopy(elementData, 0, newArray, 0, elementData.length);
+            elementData = newArray;
+        }
+    }
+
     public T peek() {
-        if (size == 0) {
+        checkIfStackEmpty();
+        return elementData[size - 1];
+    }
+
+    private void checkIfStackEmpty() {
+        if (isEmpty()) {
             throw new EmptyStackException();
         }
-        return stack[size - 1];
+    }
+
+    private boolean isEmpty() {
+        return size == 0;
     }
 
     public T pop() {
-        T poppedElement = peek();
-        stack[size - 1] = null;
+        checkIfStackEmpty();
         size--;
-        return poppedElement;
+        T element = (T) elementData[size];
+        elementData[size] = null;
+        return element;
     }
 
     public int size() {
         return size;
-    }
-
-    private void grow() {
-        T[] oldStack = stack;
-        capacity *= GROWTH_FACTOR;
-        stack = (T[]) new Object[capacity];
-        System.arraycopy(oldStack, 0, stack, 0, size);
     }
 }
