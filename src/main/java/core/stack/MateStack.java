@@ -3,34 +3,31 @@ package core.stack;
 import java.util.EmptyStackException;
 
 public class MateStack<T> {
-    private int initCapacity = 16;
+    private final int INIT_CAPACITY = 16;
+    private final int GROW_FACTOR = 2;
     private T[] elementData;
     private int size = 0;
 
     @SuppressWarnings("unchecked")
     public MateStack() {
-        this.elementData = (T[]) new Object[initCapacity];
+        this.elementData = (T[]) new Object[INIT_CAPACITY];
     }
 
     public void push(T value) {
         if (size == elementData.length) {
-            reSize(elementData.length * 2);
+            reSize(elementData.length * GROW_FACTOR);
         }
         elementData[size] = value;
         size++;
     }
 
     public T peek() {
-        if (size == 0) {
-            throw new EmptyStackException();
-        }
+        checkIfEmpty();
         return elementData[size - 1];
     }
 
     public T pop() {
-        if (size == 0) {
-            throw new EmptyStackException();
-        }
+        checkIfEmpty();
         T old = elementData[size - 1];
         elementData[size - 1] = null;
         size--;
@@ -39,6 +36,12 @@ public class MateStack<T> {
 
     public int size() {
         return this.size;
+    }
+
+    private void checkIfEmpty() {
+        if (size == 0) {
+            throw new EmptyStackException();
+        }
     }
 
     private void reSize(int newCapacity) {
