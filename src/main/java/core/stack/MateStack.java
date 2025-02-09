@@ -3,19 +3,19 @@ package core.stack;
 import java.util.EmptyStackException;
 
 public class MateStack<T> {
-    private final int INIT_CAPACITY = 16;
-    private final int GROW_FACTOR = 2;
+    private final int initCapasity = 16;
+    private final int growFactor = 2;
     private T[] elementData;
     private int size = 0;
 
     @SuppressWarnings("unchecked")
     public MateStack() {
-        this.elementData = (T[]) new Object[INIT_CAPACITY];
+        this.elementData = (T[]) new Object[initCapasity];
     }
 
     public void push(T value) {
         if (size == elementData.length) {
-            reSize(elementData.length * GROW_FACTOR);
+            reSize(elementData.length * growFactor);
         }
         elementData[size] = value;
         size++;
