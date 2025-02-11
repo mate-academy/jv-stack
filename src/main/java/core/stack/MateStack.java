@@ -29,7 +29,7 @@ public class MateStack<T> {
             throw new EmptyStackException();
         }
         T returnElement = (T) array[index - 1];
-        array[index - 1] = null;
+        array[--index] = null;
         size--;
         return returnElement;
     }
