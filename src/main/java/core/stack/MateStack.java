@@ -5,11 +5,27 @@ import java.util.EmptyStackException;
 public class MateStack<T> {
 
     private static class Node<T> {
-        T value;
-        Node<T> next;
+        private T value;
+        private Node<T> next;
 
-        Node(T value) {
+        public Node(T value) {
             this.value = value;
+        }
+
+        public T getValue() {
+            return value;
+        }
+
+        public void setValue(T value) {
+            this.value = value;
+        }
+
+        public Node<T> getNext() {
+            return next;
+        }
+
+        public void setNext(Node<T> next) {
+            this.next = next;
         }
     }
 
@@ -23,7 +39,7 @@ public class MateStack<T> {
 
     public void push(T value) {
         Node<T> newNode = new Node<>(value);
-        newNode.next = top;
+        newNode.setNext(top);
         top = newNode;
         size++;
     }
@@ -32,15 +48,15 @@ public class MateStack<T> {
         if (top == null) {
             throw new EmptyStackException();
         }
-        return top.value;
+        return top.getValue();
     }
 
     public T pop() {
         if (top == null) {
             throw new EmptyStackException();
         }
-        T value = top.value;
-        top = top.next;
+        T value = top.getValue();
+        top = top.getNext();
         size--;
         return value;
     }
