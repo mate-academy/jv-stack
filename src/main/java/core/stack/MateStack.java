@@ -34,15 +34,14 @@ public class MateStack<T> {
         while (currentNode.nextNode != null && currentNode.nextNode != tail) {
             currentNode = currentNode.nextNode;
         }
-        T tailValue = tail.value;
         tail = currentNode;
         tail.nextNode = null;
-        if (size == 0){
+        if (size == 0) {
             head = null;
-        }else {
+        } else {
             size--;
         }
-        return tailValue;
+        return tail.value;
     }
 
     public int size() {
