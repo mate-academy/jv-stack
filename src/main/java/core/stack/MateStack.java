@@ -37,11 +37,8 @@ public class MateStack<T> {
         T tailValue = tail.value;
         tail = currentNode;
         tail.nextNode = null;
-        if (size == 0) {
-            head = null;
-        } else {
-            size--;
-        }
+        if (size == 0) { head = null;
+        } else { size--; }
         return tailValue;
     }
 
