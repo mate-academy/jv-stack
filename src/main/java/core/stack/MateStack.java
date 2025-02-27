@@ -34,6 +34,7 @@ public class MateStack<T> {
         while (currentNode.nextNode != null && currentNode.nextNode != tail) {
             currentNode = currentNode.nextNode;
         }
+        T tailValue = tail.value;
         tail = currentNode;
         tail.nextNode = null;
         if (size == 0) {
@@ -41,7 +42,7 @@ public class MateStack<T> {
         } else {
             size--;
         }
-        return tail.value;
+        return tailValue;
     }
 
     public int size() {
