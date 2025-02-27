@@ -11,6 +11,7 @@ public class MateStack<T> {
         Node<T> newNode = new Node(null, value);
         if (size == 0) {
             head = newNode;
+            tail = newNode;
         } else {
             tail.nextNode = newNode;
         }
@@ -35,7 +36,12 @@ public class MateStack<T> {
         }
         T tailValue = tail.value;
         tail = currentNode;
-        size--;
+        tail.nextNode = null;
+        if (size == 0){
+            head = null;
+        }else {
+            size--;
+        }
         return tailValue;
     }
 
