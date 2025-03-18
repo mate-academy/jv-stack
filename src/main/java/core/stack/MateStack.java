@@ -3,53 +3,50 @@ package core.stack;
 import java.util.EmptyStackException;
 
 public class MateStack<T> {
-    private Node<T> top;
+    private static final int DEF_CAPACITY = 10;
+    private Object[] array;
     private int size;
 
-    private static class Node<T> {
-        T data;
-        Node<T> next;
-
-        Node(T data) {
-            this.data = data;
-            this.next = null;
-        }
-    }
-
     public MateStack() {
-        top = null;
+        array = new Object[DEF_CAPACITY];
         size = 0;
     }
 
     public void push(T value) {
-        Node<T> newNode = new Node<>(value);
-        newNode.next = top;
-        top = newNode;
-        size++;
-    }
-
-    public T pop() {
-        if (isEmpty()) {
-            throw new EmptyStackException();
-        }
-        T value = top.data;
-        top = top.next;
-        size--;
-        return value;
+        checkCapacity();
+        array[size++] = value;
     }
 
     public T peek() {
         if (isEmpty()) {
             throw new EmptyStackException();
         }
-        return top.data;
+        return (T) array[size - 1];
+    }
+
+    public T pop() {
+        if (isEmpty()) {
+            throw new EmptyStackException();
+        }
+        T current = (T) array[--size];
+        array[size] = null;
+        return current;
+    }
+
+    public int size() {
+        return size;
     }
 
     public boolean isEmpty() {
         return size == 0;
     }
 
-    public int size() {
-        return size;
+    public void checkCapacity() {
+        if (size == array.length) {
+            int newSize = array.length * 2;
+            Object[] newArray = new Object[newSize];
+            System.arraycopy(array, 0, newArray, 0, size);
+            array = newArray;
+        }
     }
 }
