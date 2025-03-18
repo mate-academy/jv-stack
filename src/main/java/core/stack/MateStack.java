@@ -1,37 +1,64 @@
 package core.stack;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.EmptyStackException;
 
 public class MateStack<T> {
-
-    private ArrayList<T> mateStack;
+    private static final int DEFAULT_CAPACITY = 8;
+    private static final int GROW = 2;
+    private int size;
+    private Object[] array;
 
     public MateStack() {
-        this.mateStack = new ArrayList<T>();
+        array = new Object[DEFAULT_CAPACITY];
+    }
+
+    @SuppressWarnings("unchecked")
+    public T pop() {
+        if (size > 0) {
+            size--;
+            T removedElement = (T) array[size];
+            array[size] = null;
+            return removedElement;
+        } else {
+            throw new EmptyStackException();
+        }
+    }
+
+    @SuppressWarnings("unchecked")
+    public T peek() {
+        if (size > 0) {
+            return (T) array[size - 1];
+        } else {
+            throw new EmptyStackException();
+        }
     }
 
     public void push(T value) {
-        mateStack.add(value);
+        if (size == array.length) {
+            ensureCapacity();
+        }
+        array[size] = value;
+        size++;
     }
 
-    public T peek() {
-        if (!mateStack.isEmpty()) {
-            return mateStack.get(mateStack.size() - 1);
-        }
-        throw new EmptyStackException();
-    }
+    @Override
+    public String toString() {
+        return Arrays.toString(array);
 
-    public T pop() {
-        if (!mateStack.isEmpty()) {
-            T value = mateStack.get(mateStack.size() - 1);
-            mateStack.remove(mateStack.size() - 1);
-            return value;
-        }
-        throw new EmptyStackException();
     }
 
     public int size() {
-        return mateStack.size();
+        return size;
+    }
+
+    @SuppressWarnings("unchecked")
+    private void ensureCapacity() {
+        int newCapacity = array.length * GROW;
+        T[] newArray = (T[]) new Object[newCapacity];
+        for (int i = 0; i < array.length; i++) {
+            newArray[i] = (T) array[i];
+        }
+        array = newArray;
     }
 }
