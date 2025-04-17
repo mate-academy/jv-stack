@@ -18,14 +18,15 @@ public class MateStack<T> {
             stack[size] = value;
             size++;
         }
-
-        private void resizeStack () {
-            int newSize = stack.length * 2;
-            Object[] newStack = new Object[newSize];
-            System.arraycopy(stack, 0, newStack, 0, stack.length);
-            stack = newStack;
-        }
     }
+
+    private void resizeStack() {
+        int newSize = stack.length * 2;
+        Object[] newStack = new Object[newSize];
+        System.arraycopy(stack, 0, newStack, 0, stack.length);
+        stack = newStack;
+    }
+
 
     public T peek() {
         if (size > 0) {
