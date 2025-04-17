@@ -18,6 +18,9 @@ public class MateStack<T> {
             stack[size] = value;
             size++;
         }
+            if (size == stack.length) {
+                resizeStack();
+        }
     }
 
     private void resizeStack() {
