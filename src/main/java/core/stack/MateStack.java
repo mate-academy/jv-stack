@@ -11,14 +11,19 @@ public class MateStack<T> {
     public MateStack() {
         stack = new Object[DEFAULT_SIZE];
         Arrays.fill(stack, null);
-        }
+    }
 
     public void push(T value) {
         if (size < stack.length) {
             stack[size] = value;
             size++;
-        } else {
-            throw new StackOverflowError();
+        }
+
+        private void resizeStack () {
+            int newSize = stack.length * 2;
+            Object[] newStack = new Object[newSize];
+            System.arraycopy(stack, 0, newStack, 0, stack.length);
+            stack = newStack;
         }
     }
 
