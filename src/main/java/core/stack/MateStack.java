@@ -1,19 +1,30 @@
 package core.stack;
 
-public class MateStack<T> {
-    public void push(T value) {
+import java.util.EmptyStackException;
+import java.util.LinkedList;
 
+public class MateStack<T> {
+    private LinkedList<T> elements = new LinkedList<>();
+
+    public void push(T value) {
+        elements.addLast(value);
     }
 
     public T peek() {
-        return null;
+        if (elements.isEmpty()) {
+            throw new EmptyStackException();
+        }
+        return elements.getLast();
     }
 
     public T pop() {
-        return null;
+        if (elements.isEmpty()) {
+            throw new EmptyStackException();
+        }
+        return elements.removeLast();
     }
 
     public int size() {
-        return 0;
+        return elements.size();
     }
 }
