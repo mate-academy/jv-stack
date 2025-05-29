@@ -4,8 +4,8 @@ import java.util.EmptyStackException;
 
 public class MateStack<T> {
     private static class Node<T> {
-        private T value;
-        private Node<T> next;
+        private final T value;
+        private final Node<T> next;
 
         Node(T value, Node<T> next) {
             this.value = value;
