@@ -36,10 +36,11 @@ public class MateStack<T> {
         if (size == 0) {
             throw new EmptyStackException();
         }
+
         Node<T> newHead = head.next;
         final Node<T> headCopy = head;
-        if (head.next == null) {
-            newHead = head;
+        if (head.next == null && size == 1) {
+            head = null;
         }
         head = newHead;
         size--;
