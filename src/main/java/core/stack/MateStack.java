@@ -25,14 +25,21 @@ public class MateStack<T> {
         Node<T> temp = head;
         head = head.next;
         size--;
-        return temp.element;
+        temp.next = null;
+        T result = temp.element;
+        temp.element = null;
+        return result;
     }
 
     public int size() {
         return size;
     }
 
-    static class Node<T> {
+    public boolean isEmpty() {
+        return size == 0;
+    }
+
+    private static class Node<T> {
         private T element;
         private Node<T> next;
 
