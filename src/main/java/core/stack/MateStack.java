@@ -14,7 +14,7 @@ public class MateStack<T> {
     }
 
     private static class Node<T> {
-        private T value; // Usunąłem 'final' - choć nie jest zmieniane, to satysfakcjonuje Checkstyle
+        private T value;
         private Node<T> next;
 
         Node(T value) {
