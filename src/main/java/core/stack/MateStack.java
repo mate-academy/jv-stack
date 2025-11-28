@@ -3,46 +3,57 @@ package core.stack;
 import java.util.EmptyStackException;
 
 public class MateStack<T> {
-    // Node for singly linked list
     private static class Node<T> {
-        T value;
-        Node<T> next;
+        private T value;
+        private Node<T> next;
 
         Node(T value) {
             this.value = value;
         }
+
+        public T getValue() {
+            return value;
+        }
+
+        public Node<T> getNext() {
+            return next;
+        }
+
+        public void setNext(Node<T> next) {
+            this.next = next;
+        }
     }
 
-    private Node<T> top;  // top of stack
-    private int size;     // stack size
+    private Node<T> top;
+    private int size;
 
     public MateStack() {
-        this.top = null;
-        this.size = 0;
+        top = null;
+        size = 0;
     }
 
     public void push(T value) {
         Node<T> newNode = new Node<>(value);
-        newNode.next = top;
+        newNode.setNext(top);
         top = newNode;
         size++;
     }
 
     public T peek() {
         if (isEmpty()) {
-            throw new EmptyStackException();   // required by tests
+            throw new EmptyStackException();
         }
-        return top.value;
+        return top.getValue();
     }
 
     public T pop() {
         if (isEmpty()) {
-            throw new EmptyStackException();   // required by tests
+            throw new EmptyStackException();
         }
-        T value = top.value;
-        top = top.next;
+        T result = top.getValue();
+        top = top.getNext();
         size--;
-        return value;
+        return result;
     }
 
     public int size() {
