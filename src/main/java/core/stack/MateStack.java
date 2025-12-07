@@ -39,4 +39,8 @@ public class MateStack<T> {
         size--;
         return value;
     }
+
+    public int size() {
+        return size;
+    }
 }
