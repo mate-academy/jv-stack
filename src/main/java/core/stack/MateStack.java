@@ -8,8 +8,8 @@ public class MateStack<T> {
     private int size;
 
     private class Node {
-        T value;
-        Node next;
+        private T value;
+        private Node next;
     }
 
     public void push(T value) {
@@ -32,9 +32,9 @@ public class MateStack<T> {
         if (top == null) {
             throw new EmptyStackException();
         } else {
-           T value = top.value;
-           top = top.next;
-           size--;
+            T value = top.value;
+            top = top.next;
+            size--;
 
             return value;
         }
@@ -44,5 +44,3 @@ public class MateStack<T> {
         return size;
     }
 }
-
-
