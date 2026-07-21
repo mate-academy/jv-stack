@@ -1,48 +1,36 @@
 package core.stack;
 
-import java.util.ArrayList;
 import java.util.EmptyStackException;
-import java.util.List;
 
 public class MateStack<T> {
     int size = 0;
-    List<Node> nodes = new ArrayList<>();
+    Node head;
 
     public MateStack() {
     }
 
     public void push(T value) {
-        if (nodes.isEmpty()) {
-            nodes.add(new Node(value));
-            size++;
-        } else {
-            Node newNode = new Node(value);
-            newNode.next = nodes.get(nodes.size() - 1);
-            nodes.add(newNode);
-            size++;
-        }
+        Node newNode = new Node(value);
+        newNode.next = head;
+        size++;
+        head = newNode;
     }
 
     public T peek() {
-        T  value = null;
-        try {
-            value = nodes.get(nodes.size() - 1).value;
-        } catch (Exception e) {
+        if (size == 0) {
             throw new EmptyStackException();
         }
-        return value;
+        return head.value;
     }
 
     public T pop() {
-        T value = null;
-        try {
-            value = nodes.get(nodes.size() - 1).value;
-            nodes.remove(nodes.size() - 1);
-            size--;
-        } catch (Exception e) {
+        if (size == 0) {
             throw new EmptyStackException();
         }
-        return value;
+        Node response = head;
+        head = head.next;
+        size--;
+        return response.value;
     }
 
     public int size() {
