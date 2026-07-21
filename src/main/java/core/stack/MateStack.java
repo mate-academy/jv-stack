@@ -57,6 +57,11 @@ public class MateStack<T> {
         private T value;
         private Node next;
 
+        public Node(T value) {
+            this.value = value;
+            this.next = null;
+        }
+
         public T getValue() {
             return value;
         }
@@ -71,11 +76,6 @@ public class MateStack<T> {
 
         public void setNext(Node next) {
             this.next = next;
-        }
-
-        public Node(T value) {
-            this.value = value;
-            this.next = null;
         }
     }
 }
