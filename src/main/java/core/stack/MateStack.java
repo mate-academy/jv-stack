@@ -8,9 +8,7 @@ public class MateStack<T> {
     private int size;
 
     public void push(T value) {
-        Node<T> newNode = new Node(value, this.stackHead);
-
-        this.stackHead = newNode;
+        this.stackHead = new Node<>(value, this.stackHead);
         this.size++;
     }
 
@@ -18,16 +16,15 @@ public class MateStack<T> {
         if (this.stackHead == null) {
             throw new EmptyStackException();
         }
-        return this.stackHead.getValue();
+        return this.stackHead.value;
     }
 
     public T pop() {
         if (this.stackHead == null) {
             throw new EmptyStackException();
         }
-        Node<T> nextNode = this.stackHead.getNext();
-        T value = this.stackHead.getValue();
-        this.stackHead = nextNode;
+        T value = this.stackHead.value;
+        this.stackHead = this.stackHead.next;
         this.size--;
         return value;
     }
@@ -36,22 +33,14 @@ public class MateStack<T> {
         return this.size;
     }
 
-    private class Node<T> {
+    private static class Node<T> {
 
         private T value;
         private Node<T> next;
 
-        public Node(T value, Node<T> next) {
+        private Node(T value, Node<T> next) {
             this.value = value;
             this.next = next;
-        }
-
-        public T getValue() {
-            return this.value;
-        }
-
-        public Node<T> getNext() {
-            return this.next;
         }
     }
 }
